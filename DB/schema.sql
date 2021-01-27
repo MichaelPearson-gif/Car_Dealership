@@ -62,6 +62,9 @@ ALTER TABLE "customer_cars" ADD CONSTRAINT "fk_customer_cars_car_id" FOREIGN KEY
 REFERENCES "cars" ("car_id");
 
 -- Table alterations
--- Need to increase the size of the user name
+-- Need to increase the size of the user's name and car's owner
 ALTER TABLE "user"
 ALTER COLUMN "name" TYPE CHAR(30);
+
+ALTER TABLE "cars"
+ALTER COLUMN "owner" TYPE CHAR(30);
