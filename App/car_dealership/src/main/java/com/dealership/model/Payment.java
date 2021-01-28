@@ -2,9 +2,9 @@ package com.dealership.model;
 
 import java.util.Date;
 
-public class PaymentHistory {
+public class Payment {
 
-	private int historyId;
+	private int paymentId;
 	private int carId;
 	private double amount;
 	private double totalPayment;
@@ -12,15 +12,15 @@ public class PaymentHistory {
 	private double remainingPayments;
 	private Date date;
 	
-	public PaymentHistory() {
+	public Payment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PaymentHistory(int historyId, int carId, double amount, double totalPayment, double monthlyPayment,
+	public Payment(int paymentId, int carId, double amount, double totalPayment, double monthlyPayment,
 			double remainingPayments, Date date) {
 		super();
-		this.historyId = historyId;
+		this.paymentId = paymentId;
 		this.carId = carId;
 		this.amount = amount;
 		this.totalPayment = totalPayment;
@@ -29,12 +29,12 @@ public class PaymentHistory {
 		this.date = date;
 	}
 
-	public int getHistoryId() {
-		return historyId;
+	public int getPaymentId() {
+		return paymentId;
 	}
 
-	public void setHistoryId(int historyId) {
-		this.historyId = historyId;
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
 	}
 
 	public int getCarId() {
@@ -87,7 +87,7 @@ public class PaymentHistory {
 
 	@Override
 	public String toString() {
-		return "PaymentHistory [historyId=" + historyId + ", carId=" + carId + ", amount=" + amount + ", totalPayment="
+		return "PaymentHistory [paymentId=" + paymentId + ", carId=" + carId + ", amount=" + amount + ", totalPayment="
 				+ totalPayment + ", monthlyPayment=" + monthlyPayment + ", remainingPayments=" + remainingPayments
 				+ ", date=" + date + "]";
 	}
