@@ -29,7 +29,7 @@ CREATE TABLE "cars" (
 
 -- Store the info of the payment history of cars that are now owned by the customers
 CREATE TABLE "payment" (
-    "payment_id" INT   NOT NULL,
+    "payment_id" INT NOT NULL,
     "car_id" INT   NOT NULL,
     "amount" NUMERIC   NOT NULL,
     "total_payment" NUMERIC   NOT NULL,
@@ -41,6 +41,18 @@ CREATE TABLE "payment" (
      )
 );
 
+-- Store all offers made by customers and the statuses of each offer
+CREATE TABLE "offers"(
+	"offer_id" INT NOT NULL,
+	"username" CHAR(20) NOT NULL,
+	"car_id" INT NOT NULL,
+	"offer" NUMERIC NOT NULL,
+	"status" CHAR(10) NOT NULL,
+	CONSTRAINT "pk_offer" PRIMARY KEY(
+		"offer_id"
+	)
+);
+
 -- Foreign Key Constraints
 
 ALTER TABLE "payment" ADD CONSTRAINT "fk_payment_car_id" FOREIGN KEY("car_id")
@@ -48,3 +60,9 @@ REFERENCES "cars" ("car_id");
 
 ALTER TABLE "cars" ADD CONSTRAINT "fk_cars_username" FOREIGN KEY("username")
 REFERENCES "user" ("username");
+
+ALTER TABLE "offers" ADD CONSTRAINT "fk_offers_username" FOREIGN KEY("username")
+REFERENCES "user" ("username");
+
+ALTER TABLE "offers" ADD CONSTRAINT "fk_offers_car_id" FOREIGN KEY("car_id")
+REFERENCES "cars" ("car_id");
