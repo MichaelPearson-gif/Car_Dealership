@@ -18,8 +18,11 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public int createUser(User user) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+		int c = 0;
+		
+		c = userDAO.createUser(user);
+		
+		return c;
 	}
 
 	@Override
