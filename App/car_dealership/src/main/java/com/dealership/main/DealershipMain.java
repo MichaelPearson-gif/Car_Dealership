@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.dealership.exceptions.BusinessException;
 import com.dealership.service.UserService;
 import com.dealership.service.impl.UserServiceImpl;
 
@@ -14,6 +15,8 @@ public class DealershipMain {
 	
 	// Instance of the service layer
 	private static UserService userService = new UserServiceImpl();
+	
+	private static RegisterMenu register;
 	
 	// Create a Scanner
 	private static Scanner sc = new Scanner(System.in);
@@ -46,7 +49,12 @@ public class DealershipMain {
 			switch(ch) {
 			
 			case 1:
-				log.info("This menu option is still under construction");
+				try {
+					register.Register();
+				} catch (BusinessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 				
 			case 2:

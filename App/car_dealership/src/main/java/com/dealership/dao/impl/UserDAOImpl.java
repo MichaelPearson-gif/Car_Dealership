@@ -35,6 +35,7 @@ public class UserDAOImpl implements UserDAO{
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new BusinessException("An Internal error has occured. Double check your input for your date of birth or try another user id. If error persists, contact the system admin.");
+			
 		}
 
 		return c;
