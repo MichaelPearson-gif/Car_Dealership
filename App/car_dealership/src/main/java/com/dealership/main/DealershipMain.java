@@ -20,6 +20,49 @@ public class DealershipMain {
 	
 	public static void main(String[] args) {
 		
+		// Switch case variable
+		int ch = 0;
+		
+		// Loop through the switch case
+		do {
+			
+			// Welcome messages with choices that the user can choose from
+			log.info("Welcome to The Java Dealership where our coffee is hot and our prices are hotter!");
+			log.info("----------------------------------------------------------");
+			log.info("What would you like to do?");
+			log.info("");
+			log.info("1) Create a Java Dealership account");
+			log.info("2) Login");
+			log.info("3) Exit");
+			
+			// Parse the Switch case variable
+			try {
+				ch = Integer.parseInt(sc.nextLine());
+			}catch(NumberFormatException e) {
+				
+			}
+			
+			// Switch case menu options
+			switch(ch) {
+			
+			case 1:
+				log.info("This menu option is still under construction");
+				break;
+				
+			case 2:
+				log.info("This menu option is still under construction");
+				break;
+				
+			case 3:
+				log.info("Thank you for visiting The Java Dealership. We hope to see you again real soon.");
+				break;
+				
+			default: log.info("Invalid menu option. Please enter an number from 1-3 to the corresponding menu option");
+				break;
+			
+			}
+			
+		}while(ch != 3);
 
 	}
 
