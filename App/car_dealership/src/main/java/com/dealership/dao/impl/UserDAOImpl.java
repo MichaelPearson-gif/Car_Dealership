@@ -21,20 +21,21 @@ public class UserDAOImpl implements UserDAO{
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date dobFormat = Date.valueOf(sdf.format(user.getDob()));
 			
-			String sql = "INSERT INTO Car_Dealership.user(username, password, name, age, dob) "
+			String sql = "INSERT INTO car_dealership.users(username, passwords, users_name, age, dob) "
 					+ "VALUES(?, ?, ?, ?, ?)";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user.getUsername());
-			preparedStatement.setString(2, user.getPassword());
-			preparedStatement.setString(3, user.getName());
+			preparedStatement.setString(2, user.getPasswords());
+			preparedStatement.setString(3, user.getUsersname());
 			preparedStatement.setInt(4, user.getAge());
 			preparedStatement.setDate(5, dobFormat);
 			
 			c = preparedStatement.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			throw new BusinessException("An Internal error has occured. Double check your input for your date of birth or try another user id. If error persists, contact the system admin.");
+//			throw new BusinessException("An Internal error has occured. Double check your input for your date of birth or try another user id. If error persists, contact the system admin.");
+			e.printStackTrace();
 			
 		}
 

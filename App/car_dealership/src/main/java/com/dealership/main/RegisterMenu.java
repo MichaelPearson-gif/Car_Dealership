@@ -54,10 +54,10 @@ public class RegisterMenu {
 			user.setUsername(sc.nextLine());
 			log.info("");
 			log.info("Password");
-			user.setPassword(sc.nextLine());
+			user.setPasswords(sc.nextLine());
 			log.info("");
 			log.info("Please enter your full name");
-			user.setName(sc.nextLine());
+			user.setUsersname(sc.nextLine());
 			log.info("");
 			log.info("How old are you?");
 			user.setAge(Integer.parseInt(sc.nextLine()));

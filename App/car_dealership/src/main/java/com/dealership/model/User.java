@@ -5,8 +5,8 @@ import java.util.Date;
 public class User {
 
 	private String username;
-	private String password;
-	private String name;
+	private String passwords;
+	private String Usersname;
 	private int age;
 	private Date dob;
 	
@@ -15,11 +15,11 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String username, String password, String name, int age, Date dob) {
+	public User(String username, String passwords, String usersname, int age, Date dob) {
 		super();
 		this.username = username;
-		this.password = password;
-		this.name = name;
+		this.passwords = passwords;
+		Usersname = usersname;
 		this.age = age;
 		this.dob = dob;
 	}
@@ -32,20 +32,20 @@ public class User {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPasswords() {
+		return passwords;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswords(String passwords) {
+		this.passwords = passwords;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsersname() {
+		return Usersname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsersname(String usersname) {
+		Usersname = usersname;
 	}
 
 	public int getAge() {
@@ -65,9 +65,55 @@ public class User {
 	}
 
 	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", name=" + name + ", age=" + age + ", dob="
-				+ dob + "]";
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Usersname == null) ? 0 : Usersname.hashCode());
+		result = prime * result + age;
+		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
+		result = prime * result + ((passwords == null) ? 0 : passwords.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (Usersname == null) {
+			if (other.Usersname != null)
+				return false;
+		} else if (!Usersname.equals(other.Usersname))
+			return false;
+		if (age != other.age)
+			return false;
+		if (dob == null) {
+			if (other.dob != null)
+				return false;
+		} else if (!dob.equals(other.dob))
+			return false;
+		if (passwords == null) {
+			if (other.passwords != null)
+				return false;
+		} else if (!passwords.equals(other.passwords))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", passwords=" + passwords + ", Usersname=" + Usersname + ", age=" + age
+				+ ", dob=" + dob + "]";
+	}	
 	
 }
