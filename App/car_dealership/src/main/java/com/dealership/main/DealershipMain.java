@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.dealership.exceptions.BusinessException;
+import com.dealership.main.menus.RegisterMenu;
 import com.dealership.service.UserService;
 import com.dealership.service.impl.UserServiceImpl;
 

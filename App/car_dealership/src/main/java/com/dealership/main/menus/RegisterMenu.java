@@ -1,4 +1,4 @@
-package com.dealership.main;
+package com.dealership.main.menus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
