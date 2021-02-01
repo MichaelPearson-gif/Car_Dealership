@@ -3,6 +3,7 @@ package com.dealership.dao.impl;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
@@ -42,9 +43,29 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public String login(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public String login(String username) throws BusinessException {
+		
+		String password = null;
+		
+try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			String sql = "SELECT password FROM car_dealership.users WHERE username = ?";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, username);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				
+				password = resultSet.getString("password");
+				
+			}
+			
+			return password;
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
 	}
 
 }

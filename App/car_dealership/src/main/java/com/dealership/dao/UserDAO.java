@@ -9,5 +9,5 @@ public interface UserDAO {
 	public int createUser(User user) throws BusinessException;
 	
 	// User logs into their account
-	public String login(String username);
+	public String login(String username) throws BusinessException;
 }
