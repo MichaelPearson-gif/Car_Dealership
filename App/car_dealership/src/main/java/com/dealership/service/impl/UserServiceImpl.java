@@ -27,8 +27,20 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean login(String username, String password) throws BusinessException {
-		// TODO Auto-generated method stub
-		return false;
+		
+		// Set default value to false
+		boolean b = false;
+		
+		// Retrieve the corrsponding password from given username
+		String storedPassword = userDAO.login(username);
+		
+		// Check to see if the stored password matches the user given one
+		// If they are, change the boolean value as true
+		if(password.equals(storedPassword)) {
+			b = true;
+		}
+		
+		return b;
 	}
 
 }
