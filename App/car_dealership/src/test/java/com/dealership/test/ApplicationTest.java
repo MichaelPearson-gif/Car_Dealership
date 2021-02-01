@@ -32,8 +32,8 @@ public class ApplicationTest {
 		
 		// Make a new user
 		user.setUsername("employee1");
-		user.setPassword("password");
-		user.setName("John Doe");
+		user.setPasswords("password");
+		user.setUsersname("John Doe");
 		user.setAge(21);
 		user.setDob(new Date());
 		

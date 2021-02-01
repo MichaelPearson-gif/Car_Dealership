@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.dealership.exceptions.BusinessException;
+import com.dealership.main.menus.LoginMenu;
 import com.dealership.main.menus.RegisterMenu;
 import com.dealership.service.UserService;
 import com.dealership.service.impl.UserServiceImpl;
@@ -18,6 +19,7 @@ public class DealershipMain {
 	private static UserService userService = new UserServiceImpl();
 	
 	private static RegisterMenu register;
+	private static LoginMenu login;
 	
 	// Create a Scanner
 	private static Scanner sc = new Scanner(System.in);
@@ -59,7 +61,13 @@ public class DealershipMain {
 				break;
 				
 			case 2:
-				log.info("This menu option is still under construction");
+				
+				try {
+					login.login();
+				} catch (BusinessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 				
 			case 3:

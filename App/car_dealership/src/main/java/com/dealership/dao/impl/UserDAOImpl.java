@@ -49,7 +49,7 @@ public class UserDAOImpl implements UserDAO{
 		
 try (Connection connection = PostgresqlConnection.getConnection()){
 			
-			String sql = "SELECT password FROM car_dealership.users WHERE username = ?";
+			String sql = "SELECT passwords FROM car_dealership.users WHERE username = ?";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, username);
@@ -57,7 +57,7 @@ try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			if(resultSet.next()) {
 				
-				password = resultSet.getString("password");
+				password = resultSet.getString("passwords");
 				
 			}
 			
