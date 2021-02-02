@@ -36,4 +36,16 @@ public class CarsServiceImpl implements CarsService {
 		return myCars;
 	}
 
+	@Override
+	public List<Cars> allCarsOnLot() throws BusinessException {
+		
+		// Create a list object to store all cars on the lot
+		List<Cars> allCars = null;
+		
+		// Override the list with the query results
+		allCars = carsDAO.allCarsOnLot();
+		
+		return allCars;
+	}
+
 }

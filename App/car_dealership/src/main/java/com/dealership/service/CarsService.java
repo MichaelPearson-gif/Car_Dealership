@@ -12,4 +12,7 @@ public interface CarsService {
 	
 	// Customers can view all their cars
 	public List<Cars> customerCars(String username) throws BusinessException;
+	
+	// Get all cars on the lot
+	public List<Cars> allCarsOnLot() throws BusinessException;
 }

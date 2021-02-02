@@ -56,7 +56,10 @@ public class CustomerMenu {
 			// Switch Cases
 			switch(ch) {
 			case 1:
-				log.info("This function is under construction.");
+				log.info("Printing all cars on the lot....");
+				log.info("");
+				log.info(carsService.allCarsOnLot());
+				log.info("");
 				break;
 				
 			case 2:
