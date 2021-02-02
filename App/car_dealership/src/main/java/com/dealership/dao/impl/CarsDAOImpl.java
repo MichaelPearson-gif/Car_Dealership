@@ -107,8 +107,46 @@ public class CarsDAOImpl implements CarsDAO {
 
 	@Override
 	public List<Cars> allCarsOnLot() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		// Create a list
+		List<Cars> allCars = new ArrayList<>();
+		
+		// Connect and querry the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL query statement
+			String sql = "SELECT car_id, make, model, color, price FROM car_dealership.cars WHERE lot = on";
+			
+			// Make the Prepared Statement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+			// Create the result set to execute the query
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			// Loop through the resultSet and create a new car object for each record in the resultSet
+			while(resultSet.next()) {
+				Cars car = new Cars();
+				car.setCarId(resultSet.getInt("car_id"));
+				car.setMake(resultSet.getInt("make"));
+				car.setModel(resultSet.getString("model"));
+				car.setColor(resultSet.getString("color"));
+				car.setPrice(resultSet.getDouble("price"));
+				
+				// Add each car object to the list
+				allCars.add(car);
+			}
+			
+			// Print out a message to the user if they have no cars they own
+			if(allCars.size() == 0) {
+				log.info("Sorry we do not have any cars on the lot at the moment");
+			}
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return allCars;
 	}
 
 }
