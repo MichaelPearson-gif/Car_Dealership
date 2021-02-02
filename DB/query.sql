@@ -1,16 +1,15 @@
-SELECT * FROM "user";
+-- Writing test queries so as to know what works and what doesn't work
+SELECT c.owner_name, c.username, u.username, u.users_name
+FROM cars c
+JOIN users u 
+ON c.username = u.username;
 
-SELECT * FROM "cars";
-
-SELECT * FROM "offers";
-
-SELECT * FROM "payment";
-
--- In case I need to drop the tables
-DROP TABLE "user" CASCADE;
-
-DROP TABLE "cars" CASCADE;
-
-DROP TABLE "offers";
-
-DROP TABLE "payment";
+-- Updating using sub-queries
+UPDATE cars  
+SET owner_name = u.users_name
+FROM users u
+WHERE u.username IN(
+	SELECT u.users_name
+	FROM users u
+	WHERE u.username = 'caliman'
+);
