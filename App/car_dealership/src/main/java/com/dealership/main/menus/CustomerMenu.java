@@ -64,7 +64,10 @@ public class CustomerMenu {
 				break;
 				
 			case 3:
-				log.info("This function is under construction.");
+				log.info("Printing all your car details....");
+				log.info("");
+				log.info(carsService.customerCars(username));
+				log.info("");
 				break;
 				
 			case 4:
