@@ -27,6 +27,7 @@ public class LoginMenu {
 	
 	// Employee and Customer menus
 	private static EmployeeMenu employee = new EmployeeMenu();
+	private static CustomerMenu customer = new CustomerMenu();
 	
 	// Switch case variable
 	public static int ch = 0;
@@ -74,7 +75,7 @@ public class LoginMenu {
 					// Verify the password for a customer login
 					if(userService.login(username, password) == true) {
 						// Send them to the customer menu
-						log.info("This menu is still under construction");
+						customer.customerMenu(username);
 					}else {
 						log.info("The password you entered was incorrect. Please try again.");
 					}
