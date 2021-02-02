@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.dealership.exceptions.BusinessException;
-import com.dealership.model.User;
+import com.dealership.model.Cars;
 import com.dealership.service.CarsService;
 import com.dealership.service.UserService;
 import com.dealership.service.impl.CarsServiceImpl;
@@ -57,7 +57,27 @@ public class EmployeeMenu {
 			// Switch Cases
 			switch(ch) {
 			case 1:
-				log.info("This function is under construction.");
+				// Create a Car object
+				Cars car = new Cars();
+				
+				// Get car info
+				log.info("Please fill in the car details.");
+				log.info("");
+				log.info("What is the car's make?");
+				car.setMake(Integer.parseInt(sc.nextLine()));
+				log.info("");
+				log.info("What is the car's model?");
+				car.setModel(sc.nextLine());
+				log.info("");
+				log.info("What color is the car?");
+				car.setColor(sc.nextLine());
+				log.info("");
+				log.info("How much is the car?");
+				car.setPrice(Double.parseDouble(sc.nextLine()));
+				
+				// Send info to the service layer
+				carsService.newCar(car);
+				
 				break;
 				
 			case 2:
