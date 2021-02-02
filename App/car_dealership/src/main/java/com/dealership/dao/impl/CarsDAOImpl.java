@@ -44,6 +44,7 @@ public class CarsDAOImpl implements CarsDAO {
 			c = preparedStatement.executeUpdate();
 			
 		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
 			log.trace(e.getMessage());
 			throw new BusinessException("Internal error occured contact System Admin");
 		}
