@@ -19,6 +19,6 @@ public interface CarsDAO {
 	// Update a car
 	// field represents the column in the db that is being updated
 	// value is what is being placed into the db.
-	public int carUpdate(int carId, String field, String value) throws BusinessException;
+//	public int carUpdate(int carId, String field, String value) throws BusinessException;
 	
 }
