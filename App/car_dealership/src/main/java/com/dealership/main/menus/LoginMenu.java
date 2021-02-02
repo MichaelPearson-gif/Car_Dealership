@@ -25,6 +25,9 @@ public class LoginMenu {
 	// Instance of the service layer
 	private static UserService userService = new UserServiceImpl();
 	
+	// Employee and Customer menus
+	private static EmployeeMenu employee = new EmployeeMenu();
+	
 	// Switch case variable
 	public static int ch = 0;
 	
@@ -61,7 +64,7 @@ public class LoginMenu {
 					// Verify the password
 					if(userService.login(username, password) == true) {
 						// Send them to the employee menu
-						log.info("This menu is still under construction");
+						employee.employeeMenu(username);
 					}else {
 						log.info("The password you entered was incorrect. Please try again.");
 					}
