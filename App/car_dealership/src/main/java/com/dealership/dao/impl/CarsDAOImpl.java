@@ -180,6 +180,8 @@ public class CarsDAOImpl implements CarsDAO {
 		
 		return c;
 	}
+	
+	// The following methods will go in the Offers service layer and NOT the cars service layer since these updates will be made when employees look at offers.
 
 	// When employee takes a car off the lot
 	@Override
