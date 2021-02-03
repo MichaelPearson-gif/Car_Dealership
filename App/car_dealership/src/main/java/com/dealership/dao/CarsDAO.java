@@ -16,9 +16,12 @@ public interface CarsDAO {
 	// Get all cars on the lot
 	public List<Cars> allCarsOnLot() throws BusinessException;
 	
-	// Update a car
-	// field represents the column in the db that is being updated
-	// value is what is being placed into the db.
-//	public int carUpdate(int carId, String field, String value) throws BusinessException;
+	// The next two methods are a good example of method overloading
+	
+	// Update a car when an offer is accepted
+	public int carUpdate(int carId, String username) throws BusinessException;
+	
+	// Update a car when an employee takes a car off the lot
+	public int carUpdate(int carId) throws BusinessException;
 	
 }

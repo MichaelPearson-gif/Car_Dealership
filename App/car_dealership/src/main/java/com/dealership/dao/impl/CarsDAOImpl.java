@@ -149,4 +149,41 @@ public class CarsDAOImpl implements CarsDAO {
 		return allCars;
 	}
 
+	// When offers are accepted
+	@Override
+	public int carUpdate(int carId, String username) throws BusinessException {
+		int c = 0;
+		
+		// Connect and update the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement. Using update join and subqueries to complete it
+			String sql = "UPDATE car_dealership.cars SET owner_name = u.users_name, lot = 'off', username =?"
+					+ "FROM car_dealership.users u"
+					+ "WHERE car_id = ? AND u.users_name IN("
+					+ "SELECT users_name FROM car_dealership.users WHERE username = ?)";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, username);
+			preparedStatement.setInt(2, carId);
+			preparedStatement.setString(3, username);
+			
+			c = preparedStatement.executeUpdate();
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return c;
+	}
+
+	// When employee takes a car off the lot
+	@Override
+	public int carUpdate(int carId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
