@@ -103,8 +103,48 @@ public class OffersDAOImpl implements OffersDAO {
 	// Employee views all offers by carId
 	@Override
 	public List<Offers> carOffers(int carId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// Create a pending offers list
+		List<Offers> offersByCarId = new ArrayList<>();
+		
+		// Connect and update the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement
+			String sql = "SELECT * FROM car_dealership.offers WHERE car_id = ?";
+			
+			// Make the PreparedStatement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, carId);
+			
+			// Create the ResultSet
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			// Loop through the ResultSet to add each result to the pendingOffers list
+			while(resultSet.next()) {
+				Offers offer = new Offers();
+				offer.setOfferId(resultSet.getInt("offer_id"));
+				offer.setUsername(resultSet.getString("username"));
+				offer.setCarId(resultSet.getInt("car_id"));
+				offer.setOffer(resultSet.getDouble("offer"));
+				offer.setStatus(resultSet.getString("status"));
+				
+				// Adding each offer object to the list
+				offersByCarId.add(offer);
+			}
+			
+			// Print out a message to the employee if they have no pending offers
+			if(offersByCarId.size() == 0) {
+				log.info("There appears to be no offers for the car with id " + carId);
+			}
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return offersByCarId;
 	}
 
 	// Employee updates status of an offer
