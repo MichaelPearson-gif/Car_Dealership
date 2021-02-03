@@ -17,10 +17,10 @@ WHERE car_id = 1 and u.users_name IN(
 -- Possible query to use to update car info
 -- ? denotes where values from the program will be inserted
 UPDATE cars 
-SET owner_name = u.users_name, lot = 'off', username = ?
+SET owner_name = u.users_name, lot = 'off', username = 'caliman'
 FROM users u
-WHERE car_id = ? AND u.users_name IN(
+WHERE car_id = 3 AND u.users_name IN(
 	SELECT u.users_name 
 	FROM users u
-	WHERE u.username = ?
+	WHERE u.username = 'caliman'
 );
