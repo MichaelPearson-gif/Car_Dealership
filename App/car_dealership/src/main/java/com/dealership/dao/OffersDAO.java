@@ -17,9 +17,9 @@ public interface OffersDAO {
 	public List<Offers> carOffers(int carId) throws BusinessException;
 	
 	// Employee updates status of an offer
-	public int statusUpdate(int carId, String answer) throws BusinessException;
+	public int statusUpdate(int offerId, String answer) throws BusinessException;
 	
 	// System updates all offers on the same car to decline, once an offer is accepted
 	// This will be an overloaded method
-	public int statusUpdate(int carId) throws BusinessException;
+	public int statusUpdate(int offerId) throws BusinessException;
 }

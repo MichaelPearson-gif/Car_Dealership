@@ -66,3 +66,7 @@ REFERENCES users (username);
 
 ALTER TABLE offers ADD CONSTRAINT fk_offers_car_id FOREIGN KEY(car_id)
 REFERENCES cars (car_id);
+
+-- Table Alterations
+ALTER TABLE users DROP COLUMN "age";
+ALTER TABLE cars RENAME COLUMN owner_name TO owner_status;

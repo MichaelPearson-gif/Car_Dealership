@@ -59,9 +59,6 @@ public class RegisterMenu {
 			log.info("Please enter your full name");
 			user.setUsersname(sc.nextLine());
 			log.info("");
-			log.info("How old are you?");
-			user.setAge(Integer.parseInt(sc.nextLine()));
-			log.info("");
 			log.info("Date of birth (yyyy-mm-dd)");
 			user.setDob(sdf.parse(sc.nextLine()));
 			

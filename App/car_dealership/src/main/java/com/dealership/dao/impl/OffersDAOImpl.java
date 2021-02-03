@@ -23,7 +23,7 @@ public class OffersDAOImpl implements OffersDAO {
 	@Override
 	public int makeOffer(Offers offer) throws BusinessException {
 		
-		// Value to return whether the update was successful or no
+		// Value to return whether the update was successful or not
 		int c = 0;
 		
 		// Status of new offers are always going to be pending
@@ -149,15 +149,30 @@ public class OffersDAOImpl implements OffersDAO {
 
 	// Employee updates status of an offer
 	@Override
-	public int statusUpdate(int carId, String answer) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int statusUpdate(int offerId, String answer) throws BusinessException {
+		
+		// Value to return whether the update was successful or not
+		int c = 0;
+		
+		// Connect and update to the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement
+			String sql = "UPDATE car_dealership.offers SET status = ? WHERE offer_id = ?";
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return c;
 	}
 	
 	// System updates all offers on the same car to decline, once an offer is accepted
 	// This will be an overloaded method
 	@Override
-	public int statusUpdate(int carId) throws BusinessException {
+	public int statusUpdate(int offerId) throws BusinessException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

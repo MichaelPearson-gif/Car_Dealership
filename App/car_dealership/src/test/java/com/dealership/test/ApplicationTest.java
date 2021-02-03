@@ -34,7 +34,6 @@ public class ApplicationTest {
 		user.setUsername("employee1");
 		user.setPasswords("password");
 		user.setUsersname("John Doe");
-		user.setAge(21);
 		user.setDob(new Date());
 		
 		try {

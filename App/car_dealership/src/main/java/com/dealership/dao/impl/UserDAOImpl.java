@@ -27,15 +27,14 @@ public class UserDAOImpl implements UserDAO{
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date dobFormat = Date.valueOf(sdf.format(user.getDob()));
 			
-			String sql = "INSERT INTO car_dealership.users(username, passwords, users_name, age, dob) "
-					+ "VALUES(?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO car_dealership.users(username, passwords, users_name, dob) "
+					+ "VALUES(?, ?, ?, ?)";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user.getUsername());
 			preparedStatement.setString(2, user.getPasswords());
 			preparedStatement.setString(3, user.getUsersname());
-			preparedStatement.setInt(4, user.getAge());
-			preparedStatement.setDate(5, dobFormat);
+			preparedStatement.setDate(4, dobFormat);
 			
 			c = preparedStatement.executeUpdate();
 			

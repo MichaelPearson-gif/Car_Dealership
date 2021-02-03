@@ -25,7 +25,7 @@ public class CarsDAOImpl implements CarsDAO {
 		int c = 0;
 		
 		// Since this is a new car on the lot, I can set a default value for the owner_name and lot
-		car.setOwner("None");
+		car.setOwnerStatus("None");
 		car.setLot("on");
 		
 		// Connect and update the DB
@@ -36,7 +36,7 @@ public class CarsDAOImpl implements CarsDAO {
 					+ "VALUES(?,?,?,?,?,?)";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, car.getOwner());
+			preparedStatement.setString(1, car.getOwnerStatus());
 			preparedStatement.setString(2, car.getLot());
 			preparedStatement.setInt(3, car.getMake());
 			preparedStatement.setString(4, car.getModel());
@@ -79,7 +79,7 @@ public class CarsDAOImpl implements CarsDAO {
 			while(resultSet.next()) {
 				Cars car = new Cars();
 				car.setCarId(resultSet.getInt("car_id"));
-				car.setOwner(resultSet.getString("owner_name"));
+				car.setOwnerStatus(resultSet.getString("owner_status"));
 				car.setLot(resultSet.getString("lot"));
 				car.setMake(resultSet.getInt("make"));
 				car.setModel(resultSet.getString("model"));
@@ -158,16 +158,12 @@ public class CarsDAOImpl implements CarsDAO {
 		try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			// SQL statement. Using update join and subqueries to complete it
-			String sql = "UPDATE car_dealership.cars SET owner_name = u.users_name, lot = 'off', username =?"
-					+ "FROM car_dealership.users u"
-					+ "WHERE car_id = ? AND u.users_name IN("
-					+ "SELECT users_name FROM car_dealership.users WHERE username = ?)";
+			String sql = "UPDATE car_dealership.cars SET owner_status = Owned, lot = 'off', username =? WHERE car_id = ?";
 			
 			// Make the prepared statement
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, username);
 			preparedStatement.setInt(2, carId);
-			preparedStatement.setString(3, username);
 			
 			// Execute the update query
 			c = preparedStatement.executeUpdate();

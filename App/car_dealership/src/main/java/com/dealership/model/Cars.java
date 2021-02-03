@@ -3,7 +3,7 @@ package com.dealership.model;
 public class Cars {
 
 	private int carId;
-	private String owner;
+	private String ownerStatus;
 	private String lot;
 	private int make;
 	private String model;
@@ -16,11 +16,11 @@ public class Cars {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cars(int carId, String owner, String lot, int make, String model, String color, double price,
+	public Cars(int carId, String ownerStatus, String lot, int make, String model, String color, double price,
 			String username) {
 		super();
 		this.carId = carId;
-		this.owner = owner;
+		this.ownerStatus = ownerStatus;
 		this.lot = lot;
 		this.make = make;
 		this.model = model;
@@ -37,12 +37,12 @@ public class Cars {
 		this.carId = carId;
 	}
 
-	public String getOwner() {
-		return owner;
+	public String getOwnerStatus() {
+		return ownerStatus;
 	}
 
-	public void setOwner(String owner) {
-		this.owner = owner;
+	public void setOwnerStatus(String ownerStatus) {
+		this.ownerStatus = ownerStatus;
 	}
 
 	public String getLot() {
@@ -94,9 +94,69 @@ public class Cars {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + carId;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + ((lot == null) ? 0 : lot.hashCode());
+		result = prime * result + make;
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((ownerStatus == null) ? 0 : ownerStatus.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cars other = (Cars) obj;
+		if (carId != other.carId)
+			return false;
+		if (color == null) {
+			if (other.color != null)
+				return false;
+		} else if (!color.equals(other.color))
+			return false;
+		if (lot == null) {
+			if (other.lot != null)
+				return false;
+		} else if (!lot.equals(other.lot))
+			return false;
+		if (make != other.make)
+			return false;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (ownerStatus == null) {
+			if (other.ownerStatus != null)
+				return false;
+		} else if (!ownerStatus.equals(other.ownerStatus))
+			return false;
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "Cars [carId=" + carId + ", owner=" + owner + ", lot=" + lot + ", make=" + make + ", model=" + model
-				+ ", color=" + color + ", price=" + price + ", username=" + username + "]";
+		return "Cars [carId=" + carId + ", ownerStatus=" + ownerStatus + ", lot=" + lot + ", make=" + make + ", model="
+				+ model + ", color=" + color + ", price=" + price + ", username=" + username + "]";
 	}
 	
 }
