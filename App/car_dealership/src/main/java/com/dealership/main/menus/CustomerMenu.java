@@ -5,9 +5,12 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.dealership.exceptions.BusinessException;
+import com.dealership.model.Offers;
 import com.dealership.service.CarsService;
+import com.dealership.service.OffersService;
 import com.dealership.service.UserService;
 import com.dealership.service.impl.CarsServiceImpl;
+import com.dealership.service.impl.OffersServiceImpl;
 import com.dealership.service.impl.UserServiceImpl;
 
 public class CustomerMenu {
@@ -27,6 +30,7 @@ public class CustomerMenu {
 	// Instances of the service layers
 	private static UserService userService = new UserServiceImpl();
 	private static CarsService carsService = new CarsServiceImpl();
+	private static OffersService offersService = new OffersServiceImpl();
 	
 	// Switch case variable
 	public static int ch = 0;
@@ -63,7 +67,18 @@ public class CustomerMenu {
 				break;
 				
 			case 2:
-				log.info("This function is under construction.");
+				// Create an offer object
+				Offers offer = new Offers();
+				log.info("Please enter the following ifo to make your offer");
+				log.info("");
+				offer.setUsername(username);
+				log.info("Please enter the car id for the car you wish to put an offer on.");
+				offer.setCarId(Integer.parseInt(sc.nextLine()));
+				log.info("");
+				log.info("How much is your offer?");
+				offer.setOffer(Double.parseDouble(sc.nextLine()));
+				log.info("");
+				offersService.makeOffer(offer);
 				break;
 				
 			case 3:
