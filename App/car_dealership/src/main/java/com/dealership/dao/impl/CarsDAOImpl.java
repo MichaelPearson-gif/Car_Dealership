@@ -32,7 +32,7 @@ public class CarsDAOImpl implements CarsDAO {
 		try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			// SQL statement
-			String sql = "INSERT INTO car_dealership.cars(owner_name, lot, make, model, color, price)"
+			String sql = "INSERT INTO car_dealership.cars(DEFAULT, owner_name, lot, make, model, color, price)"
 					+ "VALUES(?,?,?,?,?,?)";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
