@@ -48,4 +48,28 @@ public class CarsServiceImpl implements CarsService {
 		return allCars;
 	}
 
+	@Override
+	public int carUpdate(int carId, String username) throws BusinessException {
+		
+		// Value to return whether the update was successful or not
+		int c = 0;
+		
+		// Override c to equal the correct carUpdate method from the dao layer
+		c = carsDAO.carUpdate(carId, username);
+		
+		return c;
+	}
+
+	@Override
+	public int carUpdate(int carId) throws BusinessException {
+		
+		// Value to return whether the update was successful or not
+		int c = 0;
+		
+		// Override c to equal the correct carUpdate method from the dao layer
+		c = carsDAO.carUpdate(carId);
+		
+		return c;
+	}
+
 }

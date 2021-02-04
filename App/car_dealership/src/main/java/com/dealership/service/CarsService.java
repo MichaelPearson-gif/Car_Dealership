@@ -15,4 +15,12 @@ public interface CarsService {
 	
 	// Get all cars on the lot
 	public List<Cars> allCarsOnLot() throws BusinessException;
+	
+	// The following methods will be called in the offers service layer
+	
+	// When offers are accepted
+	public int carUpdate(int carId, String username) throws BusinessException;
+	
+	// When employee takes a car off the lot
+	public int carUpdate(int carId) throws BusinessException;
 }
