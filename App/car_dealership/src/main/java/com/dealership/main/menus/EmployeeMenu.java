@@ -7,8 +7,10 @@ import org.apache.log4j.Logger;
 import com.dealership.exceptions.BusinessException;
 import com.dealership.model.Cars;
 import com.dealership.service.CarsService;
+import com.dealership.service.OffersService;
 import com.dealership.service.UserService;
 import com.dealership.service.impl.CarsServiceImpl;
+import com.dealership.service.impl.OffersServiceImpl;
 import com.dealership.service.impl.UserServiceImpl;
 
 public class EmployeeMenu {
@@ -28,6 +30,7 @@ public class EmployeeMenu {
 	// Instances of the service layers
 	private static UserService userService = new UserServiceImpl();
 	private static CarsService carsService = new CarsServiceImpl();
+	private static OffersService offersService = new OffersServiceImpl();
 	
 	// Switch case variable
 	public static int ch = 0;
@@ -81,7 +84,9 @@ public class EmployeeMenu {
 				break;
 				
 			case 2:
-				log.info("This function is under construction.");
+				log.info("Printing all pending car offers...");
+				log.info(offersService.allOffers());
+				log.info("");
 				break;
 				
 			case 3:

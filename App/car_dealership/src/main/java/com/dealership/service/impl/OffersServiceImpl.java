@@ -1,5 +1,6 @@
 package com.dealership.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dealership.dao.OffersDAO;
@@ -33,8 +34,14 @@ public class OffersServiceImpl implements OffersService {
 	// Employee views all pending offers
 	@Override
 	public List<Offers> allOffers() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// Create a list of all pending offers
+		List<Offers> pendingOffers = new ArrayList<>();
+		
+		// Extract the data from db
+		pendingOffers = offersDAO.allOffers();
+		
+		return pendingOffers;
 	}
 
 	// Employee views all offers by carId
