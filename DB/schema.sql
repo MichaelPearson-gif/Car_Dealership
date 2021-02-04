@@ -2,71 +2,46 @@
 
 -- Store info about each user
 CREATE TABLE users(
-    username CHAR(20)   NOT NULL,
-    passwords CHAR(20)   NOT NULL,
-    users_name CHAR(30)   NOT NULL,
-    age INT   NOT NULL,
-    dob DATE   NOT NULL,
-    CONSTRAINT pk_user PRIMARY KEY (
-        username
-     )
+    username CHAR(20)  PRIMARY KEY,
+    passwords CHAR(20) NOT NULL,
+    users_name CHAR(30) NOT NULL,
+    dob DATE NOT NULL
 );
 
 -- Store the info about each car and whether or not it is in the lot or not as well as if it has an owner
 CREATE TABLE cars (
-    car_id INT   NOT NULL,
-    owner_name CHAR(30)   NOT NULL,
-    lot CHAR(3)   NOT NULL,
+    car_id SERIAL PRIMARY KEY,
+    own_status CHAR(5) NOT NULL,
+    lot CHAR(3) NOT NULL,
 	make INT NOT NULL,
 	model CHAR(30) NOT NULL,
 	color CHAR(15) NOT NULL,
-    price NUMERIC   NOT NULL,
-	username CHAR(20),
-    CONSTRAINT pk_cars PRIMARY KEY (
-        car_id
-     )
+    price NUMERIC NOT NULL,
+	username CHAR(20) REFERENCES users(username)
 );
 
 -- Store the info of the payment history of cars that are now owned by the customers
 CREATE TABLE payments (
-    payment_id INT NOT NULL,
-    car_id INT   NOT NULL,
-    amount NUMERIC   NOT NULL,
-    total_payment NUMERIC   NOT NULL,
-    monthly_payment NUMERIC   NOT NULL,
-    remaining_payments NUMERIC   NOT NULL,
-    date DATE   NOT NULL,
-    CONSTRAINT pk_payment PRIMARY KEY (
-        payment_id
-     )
+    payment_id SERIAL PRIMARY KEY,
+    car_id INT NOT NULL REFERENCES cars(car_id),
+    amount NUMERIC NOT NULL,
+    total_payment NUMERIC NOT NULL,
+    monthly_payment NUMERIC NOT NULL,
+    remaining_payments NUMERIC NOT NULL,
+    date DATE NOT NULL
 );
 
 -- Store all offers made by customers and the statuses of each offer
 CREATE TABLE offers(
-	offer_id INT NOT NULL,
+	offer_id SERIAL PRIMARY KEY,
 	username CHAR(20) NOT NULL,
-	car_id INT NOT NULL,
+	car_id INT NOT NULL REFERENCES cars(car_id),
 	offer NUMERIC NOT NULL,
-	status CHAR(10) NOT NULL,
-	CONSTRAINT pk_offer PRIMARY KEY(
-		offer_id
-	)
+	status CHAR(10) NOT NULL
 );
 
--- Foreign Key Constraints
-
-ALTER TABLE payments ADD CONSTRAINT fk_payment_car_id FOREIGN KEY(car_id)
-REFERENCES cars (car_id);
-
-ALTER TABLE cars ADD CONSTRAINT fk_cars_username FOREIGN KEY(username)
-REFERENCES users (username);
-
-ALTER TABLE offers ADD CONSTRAINT fk_offers_username FOREIGN KEY(username)
-REFERENCES users (username);
-
-ALTER TABLE offers ADD CONSTRAINT fk_offers_car_id FOREIGN KEY(car_id)
-REFERENCES cars (car_id);
-
--- Table Alterations
-ALTER TABLE users DROP COLUMN "age";
-ALTER TABLE cars RENAME COLUMN owner_name TO owner_status;
+-- In case of major edits or complete restructuring
+DROP TABLE users CASCADE;
+DROP TABLE cars CASCADE;
+DROP TABLE offers;
+DROP TABLE payments;
