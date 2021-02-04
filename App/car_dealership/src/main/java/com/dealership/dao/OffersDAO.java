@@ -13,9 +13,6 @@ public interface OffersDAO {
 	// Employee views all pending offers
 	public List<Offers> allOffers() throws BusinessException;
 	
-	// Employee views all offers by carId
-	public List<Offers> carOffers(int carId) throws BusinessException;
-	
 	// Employee updates status of an offer
 	public int statusUpdate(int offerId, String status) throws BusinessException;
 	
