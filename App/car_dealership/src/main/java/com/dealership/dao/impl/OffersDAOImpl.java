@@ -146,6 +146,20 @@ public class OffersDAOImpl implements OffersDAO {
 		
 		return offersByCarId;
 	}
+	
+	// Get the car_id of the approved offer
+	@Override
+	public int getOfferCarId(int offerId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	// Get the username of the approved offer
+	@Override
+	public String getOfferUsername(int offerId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	// Employee updates status of an offer
 	@Override
@@ -176,12 +190,50 @@ public class OffersDAOImpl implements OffersDAO {
 		return c;
 	}
 	
+	// The following methods are for when an employee approves an offer
+	
+	
 	// System updates all offers on the same car to decline, once an offer is accepted
 	// This will be an overloaded method
 	@Override
 	public int statusUpdate(int offerId) throws BusinessException {
+		
+		// Value to return whether the update was successful or not
+		int c = 0;
+		
+		// Connect and update to the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement
+			String sql = "UPDATE car_dealership.offers SET status = 'Declined' WHERE offer_id = ?";
+			
+			// Make the PreparedStatement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, offerId);
+			
+			c = preparedStatement.executeUpdate();
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return c;
+	}
+
+	// Get the count of all the offers with the same car_id
+	@Override
+	public int offerCount(int offerId) throws BusinessException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	// Get a list of all offer id's if the count > 1
+	@Override
+	public List<Integer> getOfferList(int carId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
