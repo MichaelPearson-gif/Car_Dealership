@@ -32,7 +32,7 @@ public interface OffersDAO {
 	public int statusUpdate(int offerId) throws BusinessException;
 	
 	// Get the count of all the offers with the same car_id
-	public int offerCount(int offerId) throws BusinessException;
+	public int offerCount(int carId) throws BusinessException;
 	
 	// Get a list of all offer id's if the count > 1
 	public List<Integer> getOfferList(int carId) throws BusinessException;

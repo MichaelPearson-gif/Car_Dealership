@@ -224,16 +224,70 @@ public class OffersDAOImpl implements OffersDAO {
 
 	// Get the count of all the offers with the same car_id
 	@Override
-	public int offerCount(int offerId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int offerCount(int carId) throws BusinessException {
+		
+		// Count variable
+		int count = 0;
+		
+		// Connect and update to the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement
+			String sql = "SELECT COUNT(offer_id) FROM car_dealership.offers WHERE car_id = ? AND status = 'Pending'";
+			
+			// Make a PreparedStatement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, carId);
+			
+			// Make the ResultSet
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			// set the variable count equal to the the value of the resultSet
+			if(resultSet.next()) {
+				count = resultSet.getInt("COUNT(offer_id)");
+			}
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return count;
 	}
 
 	// Get a list of all offer id's if the count > 1
 	@Override
 	public List<Integer> getOfferList(int carId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// Create a list of offer id's
+		List<Integer> offerIdList = new ArrayList<>();
+		
+		// Connect and update to the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement
+			String sql = "SELECT offer_id FROM car_dealership.offers WHERE car_id = ? AND status = 'Pending'";
+			
+			// Make a PreparedStatement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, carId);
+			
+			// Make the ResultSet
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			// Loop through the resultSet and append to the list
+			while(resultSet.next()) {
+				offerIdList.add(resultSet.getInt("offer_id"));
+			}
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return offerIdList;
 	}
 
 }
