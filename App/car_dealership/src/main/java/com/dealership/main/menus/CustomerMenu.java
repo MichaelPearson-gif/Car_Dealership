@@ -19,7 +19,7 @@ public class CustomerMenu {
 	}
 
 	// Logger variable
-	public static Logger log = Logger.getLogger(EmployeeMenu.class);
+	public static Logger log = Logger.getLogger(CustomerMenu.class);
 	
 	// Scanner variable
 	public static Scanner sc = new Scanner(System.in);
