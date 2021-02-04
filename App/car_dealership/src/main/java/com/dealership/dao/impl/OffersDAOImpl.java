@@ -149,7 +149,7 @@ public class OffersDAOImpl implements OffersDAO {
 
 	// Employee updates status of an offer
 	@Override
-	public int statusUpdate(int offerId, String answer) throws BusinessException {
+	public int statusUpdate(int offerId, String status) throws BusinessException {
 		
 		// Value to return whether the update was successful or not
 		int c = 0;
@@ -159,6 +159,13 @@ public class OffersDAOImpl implements OffersDAO {
 			
 			// SQL statement
 			String sql = "UPDATE car_dealership.offers SET status = ? WHERE offer_id = ?";
+			
+			// Make the PreparedStatement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, status);
+			preparedStatement.setInt(2, offerId);
+			
+			c = preparedStatement.executeUpdate();
 			
 		}catch (ClassNotFoundException | SQLException e) {
 			// Log the error message
