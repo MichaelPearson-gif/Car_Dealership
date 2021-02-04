@@ -84,9 +84,7 @@ public class EmployeeMenu {
 				break;
 				
 			case 2:
-				log.info("Printing all pending car offers...");
-				log.info(offersService.allOffers());
-				log.info("");
+				log.info("This function is under construction.");
 				break;
 				
 			case 3:
