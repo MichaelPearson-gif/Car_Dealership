@@ -1,5 +1,7 @@
 package com.dealership.service.impl;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -63,8 +65,46 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public int makePayment(Payment payment) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int c = 0;
+		
+		List<Payment> pastPayments = allPayments(payment.getCarId());
+		
+		if(pastPayments.equals(null)) {
+			// When an offer is accepted, create a payment record with the amount of 0
+			// This way there will be a record of the monthly payments
+			payment.setAmount(0.00);
+			
+			// Each customer will be making payments over the course of 5 years = 60 months
+			double monthlyPayment = payment.getTotalPayment() / 60;
+			payment.setMonthlyPayment(monthlyPayment);
+			payment.setRemainingPayments(60);
+			
+			c = paymentDAO.makePayment(payment);
+			
+		}else {
+			
+			// When a customer makes a payment
+			// Get the latest payment record
+			Collections.sort(pastPayments, new Comparator<Payment>() {
+				public int compare(Payment o1, Payment o2) {
+					return Integer.compare(o1.getPaymentId(), o2.getPaymentId());
+				}
+			});
+			
+			Payment recentPayment = pastPayments.stream().max((x, y) -> x.getPaymentId() - y.getPaymentId()).get();
+			
+			// Now grab the total payment, monthly payment, and remaining payments info
+			payment.setTotalPayment(recentPayment.getTotalPayment());
+			payment.setMonthlyPayment(recentPayment.getMonthlyPayment());
+			payment.setRemainingPayments(recentPayment.getRemainingPayments());
+			
+			// Now send the info to the dao layer
+			c = paymentDAO.makePayment(payment);
+			
+		}
+		
+		return c;
 	}
 
 }
