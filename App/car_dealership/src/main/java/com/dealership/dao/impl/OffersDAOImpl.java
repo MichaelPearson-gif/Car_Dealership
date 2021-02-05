@@ -88,7 +88,7 @@ public class OffersDAOImpl implements OffersDAO {
 			
 			// Print out a message to the employee if they have no pending offers
 			if(pendingOffers.size() == 0) {
-				log.info("There are no pending offers");
+				log.error("There are no pending offers");
 			}
 			
 		}catch (ClassNotFoundException | SQLException e) {

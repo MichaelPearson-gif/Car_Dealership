@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.apache.log4j.Logger;
 import com.dealership.dao.PaymentDAO;
 import com.dealership.dao.dbutil.PostgresqlConnection;
 import com.dealership.exceptions.BusinessException;
+import com.dealership.model.Offers;
 import com.dealership.model.Payment;
 
 public class PaymentDAOImpl implements PaymentDAO {
@@ -115,8 +117,48 @@ public class PaymentDAOImpl implements PaymentDAO {
 
 	@Override
 	public List<Payment> allPayments(int carId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// Create a list to store all payments for a car
+		List<Payment> paymentList = new ArrayList<>();
+		
+		// Connect and query the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement
+			String sql = "SELECT * FROM car_dealership.payments WHERE car_id = ?";
+			
+			// Make a PreparedStatement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, carId);
+			
+			// Create the ResultSet
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			// Loop through the ResultSet to add each result to the paymentList list
+			while(resultSet.next()) {
+				paymentList.add(new Payment(
+						resultSet.getInt(1),
+						resultSet.getInt(2),
+						resultSet.getDouble(3),
+						resultSet.getDouble(4),
+						resultSet.getDouble(5),
+						resultSet.getInt(6),
+						resultSet.getDate(7)
+						));
+			}
+			
+			// Condition where there are no payments
+			if(paymentList.size() == 0) {
+				log.error("There is no payment history for the car id: " + carId);
+			}
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return paymentList;
 	}
 
 }
