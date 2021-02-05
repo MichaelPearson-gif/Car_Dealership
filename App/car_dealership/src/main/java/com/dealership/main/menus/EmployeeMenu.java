@@ -85,7 +85,16 @@ public class EmployeeMenu {
 				break;
 				
 			case 3:
-				log.info("This function is under construction.");
+				
+				// Variable to store employee input
+				int carId;
+				
+				log.info("Please enter the car id for the car you are removing from the lot.");
+				carId = Integer.parseInt(sc.nextLine());
+				
+				// Remove the car from the lot
+				carsService.carUpdate(carId);
+
 				break;
 				
 			case 4:

@@ -86,7 +86,6 @@ public class OffersServiceImpl implements OffersService {
 			carsService.carUpdate(carId, username);
 			
 			// Get a list of all other offers for the car id
-			// See if it is ok or better to reference a method within this class
 			List<Offers> otherOffers = carOffers(carId);
 			
 			// Check size of the otherOffers list
