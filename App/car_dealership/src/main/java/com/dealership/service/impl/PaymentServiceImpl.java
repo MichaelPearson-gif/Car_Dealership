@@ -19,7 +19,7 @@ public class PaymentServiceImpl implements PaymentService {
 	private static PaymentDAO paymentDAO = new PaymentDAOImpl();
 
 	@Override
-	public int remainingPayment(int carId) throws BusinessException {
+	public void remainingPayment(int carId) throws BusinessException {
 		
 		// Create a variable to store the remaining payments and an object of Payment
 		// Both of which will initially be null
@@ -33,12 +33,14 @@ public class PaymentServiceImpl implements PaymentService {
 			// Retrieve the number of payments remaining for the car
 			numPayments = payment.getRemainingPayments();
 			
+			// Print out to the customer their remaining payments
+			System.out.println("You have " + numPayments + " left of $" + payment.getMonthlyPayment());
+			
 		}catch(NullPointerException e) {
 			log.error(e.getMessage());
 			throw new BusinessException("payment value is null");
 		}
 		
-		return numPayments;
 	}
 
 	@Override
