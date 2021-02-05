@@ -10,8 +10,8 @@ public interface PaymentDAO {
 	// Make a payment
 	public int makePayment(Payment payment) throws BusinessException;
 	
-	// Customer can view remaining payments on a car
-	public void remainingPayments(int carId) throws BusinessException;
+	// Get the latest payment info
+	public Payment latestPayment(int carId) throws BusinessException;
 	
 	// Employee can view all payments on a car
 	public List<Payment> allPayments(int carId) throws BusinessException;
