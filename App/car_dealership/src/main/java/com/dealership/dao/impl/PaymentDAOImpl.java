@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 import com.dealership.dao.PaymentDAO;
 import com.dealership.dao.dbutil.PostgresqlConnection;
 import com.dealership.exceptions.BusinessException;
-import com.dealership.model.Offers;
 import com.dealership.model.Payment;
 
 public class PaymentDAOImpl implements PaymentDAO {
