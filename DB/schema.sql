@@ -50,3 +50,6 @@ DROP TABLE payments;
 ALTER SEQUENCE cars_car_id_seq RESTART WITH 99 INCREMENT BY 1;
 ALTER SEQUENCE offers_offer_id_seq RESTART WITH 999 INCREMENT BY 1;
 ALTER SEQUENCE payments_payment_id_seq RESTART WITH 9999 INCREMENT BY 1;
+
+-- Need to change the remaining_payments from Numeric to Int
+ALTER TABLE payments ALTER COLUMN remaining_payments TYPE INT;
