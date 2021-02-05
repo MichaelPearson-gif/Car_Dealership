@@ -7,16 +7,11 @@ import org.apache.log4j.Logger;
 import com.dealership.exceptions.BusinessException;
 import com.dealership.main.menus.LoginMenu;
 import com.dealership.main.menus.RegisterMenu;
-import com.dealership.service.UserService;
-import com.dealership.service.impl.UserServiceImpl;
 
 public class DealershipMain {
 
 	// Logger variable
 	private static Logger log = Logger.getLogger(DealershipMain.class);
-	
-	// Instance of the service layer
-	private static UserService userService = new UserServiceImpl();
 	
 	private static RegisterMenu register;
 	private static LoginMenu login;

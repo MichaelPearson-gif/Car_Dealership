@@ -32,7 +32,7 @@ public class LoginMenu {
 	// Switch case variable
 	public static int ch = 0;
 	
-	public static void login() throws BusinessException {
+	public void login() throws BusinessException {
 		// Loop through user choices
 		do {
 			

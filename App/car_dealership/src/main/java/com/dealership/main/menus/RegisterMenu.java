@@ -2,13 +2,6 @@ package com.dealership.main.menus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.chrono.ChronoPeriod;
-import java.time.chrono.Chronology;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalField;
-import java.time.temporal.TemporalUnit;
-import java.util.Date;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -36,7 +29,7 @@ public class RegisterMenu {
 	private static UserService userService = new UserServiceImpl();
 	
 	// Method that will hold the register menu.
-	public static void Register() throws BusinessException{
+	public void Register() throws BusinessException{
 		
 		// New user object to populate the db with the new customer details
 		User user = new User();

@@ -8,10 +8,8 @@ import com.dealership.exceptions.BusinessException;
 import com.dealership.model.Offers;
 import com.dealership.service.CarsService;
 import com.dealership.service.OffersService;
-import com.dealership.service.UserService;
 import com.dealership.service.impl.CarsServiceImpl;
 import com.dealership.service.impl.OffersServiceImpl;
-import com.dealership.service.impl.UserServiceImpl;
 
 public class CustomerMenu {
 
@@ -28,7 +26,6 @@ public class CustomerMenu {
 	public static Scanner sc = new Scanner(System.in);
 	
 	// Instances of the service layers
-	private static UserService userService = new UserServiceImpl();
 	private static CarsService carsService = new CarsServiceImpl();
 	private static OffersService offersService = new OffersServiceImpl();
 	
@@ -36,7 +33,7 @@ public class CustomerMenu {
 	public static int ch = 0;
 	
 	// Method to call to open customer menu
-	public static void customerMenu(String username) throws BusinessException{
+	public void customerMenu(String username) throws BusinessException{
 		
 		// Loop through the choices
 		do {

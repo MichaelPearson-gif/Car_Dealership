@@ -12,8 +12,6 @@ import com.dealership.model.Offers;
 import com.dealership.service.CarsService;
 import com.dealership.service.OffersService;
 
-import jdk.internal.org.jline.utils.Log;
-
 public class OffersServiceImpl implements OffersService {
 	
 	// Logger variable

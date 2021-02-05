@@ -7,11 +7,7 @@ import org.apache.log4j.Logger;
 import com.dealership.exceptions.BusinessException;
 import com.dealership.model.Cars;
 import com.dealership.service.CarsService;
-import com.dealership.service.OffersService;
-import com.dealership.service.UserService;
 import com.dealership.service.impl.CarsServiceImpl;
-import com.dealership.service.impl.OffersServiceImpl;
-import com.dealership.service.impl.UserServiceImpl;
 
 public class EmployeeMenu {
 
@@ -29,7 +25,6 @@ public class EmployeeMenu {
 	
 	// Instances of the service layers
 	private static CarsService carsService = new CarsServiceImpl();
-	private static OffersService offersService = new OffersServiceImpl();
 	
 	// Instance of the offers menu
 	private static OffersMenu offersMenu = new OffersMenu();
@@ -38,7 +33,7 @@ public class EmployeeMenu {
 	public static int ch = 0;
 	
 	// Method to call to open the employee menu
-	public static void employeeMenu(String username) throws BusinessException{
+	public void employeeMenu(String username) throws BusinessException{
 		
 		// Loop through the choices
 		do {
