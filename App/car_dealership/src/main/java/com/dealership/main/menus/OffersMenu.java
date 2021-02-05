@@ -57,7 +57,13 @@ public class OffersMenu {
 			// Switch Cases
 			switch(ch) {
 			case 1:
-				log.info("This function is still under construction");
+				int carId;
+				log.info("");
+				log.info("Please enter the car id you wish to look for offers for.");
+				carId = Integer.parseInt(sc.nextLine());
+				log.info("Printing all offers for car id " + carId + "....");
+				log.info("");
+				log.info(offersService.carOffers(carId));
 				break;
 				
 			case 2:

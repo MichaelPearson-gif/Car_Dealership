@@ -47,8 +47,14 @@ public class OffersServiceImpl implements OffersService {
 	// Employee views all offers by carId
 	@Override
 	public List<Offers> carOffers(int carId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		// Create a list 
+		List<Offers> filteredOffers = offersDAO.allOffers();
+		
+		// Remove all offers that do not contain the requested car id
+		filteredOffers.removeIf((o) -> o.getCarId() == carId);
+		
+		return filteredOffers;
 	}
 
 	// Employee updates status of an offer
