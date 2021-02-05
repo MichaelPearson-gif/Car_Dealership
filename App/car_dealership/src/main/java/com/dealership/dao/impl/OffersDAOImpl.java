@@ -88,7 +88,7 @@ public class OffersDAOImpl implements OffersDAO {
 			
 			// Print out a message to the employee if they have no pending offers
 			if(pendingOffers.size() == 0) {
-				log.info("There are no pending offers on cars at this time");
+				log.info("There are no pending offers");
 			}
 			
 		}catch (ClassNotFoundException | SQLException e) {
@@ -200,7 +200,7 @@ public class OffersDAOImpl implements OffersDAO {
 	// System updates all offers on the same car to decline, once an offer is accepted
 	// This will be an overloaded method
 	@Override
-	public int statusUpdate(int offerId) throws BusinessException {
+	public int statusUpdate(Offers offer) throws BusinessException {
 		
 		// Value to return whether the update was successful or not
 		int c = 0;
@@ -213,7 +213,7 @@ public class OffersDAOImpl implements OffersDAO {
 			
 			// Make the PreparedStatement
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, offerId);
+			preparedStatement.setInt(1, offer.getOfferId());
 			
 			c = preparedStatement.executeUpdate();
 			

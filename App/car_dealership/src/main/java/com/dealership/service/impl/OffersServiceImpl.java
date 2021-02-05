@@ -3,6 +3,8 @@ package com.dealership.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.dealership.dao.OffersDAO;
 import com.dealership.dao.impl.OffersDAOImpl;
 import com.dealership.exceptions.BusinessException;
@@ -10,7 +12,12 @@ import com.dealership.model.Offers;
 import com.dealership.service.CarsService;
 import com.dealership.service.OffersService;
 
+import jdk.internal.org.jline.utils.Log;
+
 public class OffersServiceImpl implements OffersService {
+	
+	// Logger variable
+	Logger log = Logger.getLogger(OffersServiceImpl.class);
 	
 	// Connection between service layer and dao layer
 	private OffersDAO offersDAO = new OffersDAOImpl();
@@ -59,9 +66,58 @@ public class OffersServiceImpl implements OffersService {
 
 	// Employee updates status of an offer
 	@Override
-	public int statusUpdate(int offerId, String status) throws BusinessException {
-		// TODO Auto-generated method stub
-		return 0;
+	public void statusUpdate(int offerId, String status) throws BusinessException {
+		
+		// If employee approves the offer, make the following updates
+		if(status == "Approved") {
+			
+			// Create variables to store the car id and the username on the offer
+			int carId;
+			String username;
+			
+			// Employee making updates
+			offersDAO.statusUpdate(offerId, status);
+			
+			// Get the car id and username
+			carId = offersDAO.getOfferCarId(offerId);
+			username = offersDAO.getOfferUsername(offerId);
+			
+			// System updates
+			
+			// Update the car
+			carsService.carUpdate(carId, username);
+			
+			// Get a list of all other offers for the car id
+			// See if it is ok or better to reference a method within this class
+			List<Offers> otherOffers = carOffers(carId);
+			
+			// Check size of the otherOffers list
+			if(otherOffers.size() > 0) {
+				
+				// Update the status of other offers for this car to Declined 
+				for(Offers offer : otherOffers) {
+					offersDAO.statusUpdate(offer);
+				}
+				
+				// Print out a message saying that the updates was successful
+				log.info("All updates were successful");
+				
+			}else {
+				// Print out a message saying that the updates was successful
+				log.info("All updates were successful");
+			}
+			
+		}else if(status == "Declined") {
+			// Update the status
+			offersDAO.statusUpdate(offerId, status);
+			
+			// Print out a message saying that the updates was successful
+			log.info("All updates were successful");
+		}else {
+			// Print a message to the employee about an invalid option
+			log.info("Invalid status! Please try again.");
+		}
+		
 	}
 
 }

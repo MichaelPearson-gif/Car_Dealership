@@ -28,9 +28,11 @@ public class EmployeeMenu {
 	public static Scanner sc = new Scanner(System.in);
 	
 	// Instances of the service layers
-	private static UserService userService = new UserServiceImpl();
 	private static CarsService carsService = new CarsServiceImpl();
 	private static OffersService offersService = new OffersServiceImpl();
+	
+	// Instance of the offers menu
+	private static OffersMenu offersMenu = new OffersMenu();
 	
 	// Switch case variable
 	public static int ch = 0;
@@ -84,7 +86,7 @@ public class EmployeeMenu {
 				break;
 				
 			case 2:
-				log.info("This function is under construction.");
+				offersMenu.offersMenu();
 				break;
 				
 			case 3:

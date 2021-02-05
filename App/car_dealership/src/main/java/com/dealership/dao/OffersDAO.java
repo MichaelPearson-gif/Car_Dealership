@@ -26,6 +26,6 @@ public interface OffersDAO {
 	
 	// System updates all offers on the same car to decline, once an offer is accepted
 	// This will be an overloaded method
-	public int statusUpdate(int offerId) throws BusinessException;
+	public int statusUpdate(Offers offer) throws BusinessException;
 	
 }
