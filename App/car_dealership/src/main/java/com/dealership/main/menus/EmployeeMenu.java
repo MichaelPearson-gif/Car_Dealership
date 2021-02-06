@@ -7,7 +7,9 @@ import org.apache.log4j.Logger;
 import com.dealership.exceptions.BusinessException;
 import com.dealership.model.Cars;
 import com.dealership.service.CarsService;
+import com.dealership.service.PaymentService;
 import com.dealership.service.impl.CarsServiceImpl;
+import com.dealership.service.impl.PaymentServiceImpl;
 
 public class EmployeeMenu {
 
@@ -25,6 +27,7 @@ public class EmployeeMenu {
 	
 	// Instances of the service layers
 	private static CarsService carsService = new CarsServiceImpl();
+	private static PaymentService paymentService = new PaymentServiceImpl();
 	
 	// Instance of the offers menu
 	private static OffersMenu offersMenu = new OffersMenu();
@@ -98,7 +101,14 @@ public class EmployeeMenu {
 				break;
 				
 			case 4:
-				log.info("This function is under construction.");
+				// Initialize an int type variable to store employee input
+				int paymentCarId;
+				System.out.println("Please enter the car id you wish to view all payments for");
+				paymentCarId = Integer.parseInt(sc.nextLine());
+				
+				// Send input to the payment service layer
+				paymentService.allPayments(paymentCarId);
+				
 				break;
 				
 			case 5:
