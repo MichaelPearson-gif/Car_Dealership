@@ -42,13 +42,13 @@ public class EmployeeMenu {
 		do {
 			
 			// Employee menu options
-			log.info("Welcome back " + username + ". What would you like to do?");
-			log.info("");
-			log.info("1) Add a new car to the lot");
-			log.info("2) Review car offers");
-			log.info("3) Remove a car from the lot");
-			log.info("4) View Payments");
-			log.info("5) Logout");
+			System.out.println("Welcome back " + username + ". What would you like to do?");
+			System.out.println("");
+			System.out.println("1) Add a new car to the lot");
+			System.out.println("2) Review car offers");
+			System.out.println("3) Remove a car from the lot");
+			System.out.println("4) View Payments");
+			System.out.println("5) Logout");
 			
 			// Parse through the switch case variable
 			try {
@@ -64,18 +64,18 @@ public class EmployeeMenu {
 				Cars car = new Cars();
 				
 				// Get car info
-				log.info("Please fill in the car details.");
-				log.info("");
-				log.info("What is the car's make?");
+				System.out.println("Please fill in the car details.");
+				System.out.println("");
+				System.out.println("What is the car's make?");
 				car.setMake(Integer.parseInt(sc.nextLine()));
-				log.info("");
-				log.info("What is the car's model?");
+				System.out.println("");
+				System.out.println("What is the car's model?");
 				car.setModel(sc.nextLine());
-				log.info("");
-				log.info("What color is the car?");
+				System.out.println("");
+				System.out.println("What color is the car?");
 				car.setColor(sc.nextLine());
-				log.info("");
-				log.info("How much is the car?");
+				System.out.println("");
+				System.out.println("How much is the car?");
 				car.setPrice(Double.parseDouble(sc.nextLine()));
 				
 				// Send info to the service layer
@@ -92,7 +92,7 @@ public class EmployeeMenu {
 				// Variable to store employee input
 				int carId;
 				
-				log.info("Please enter the car id for the car you are removing from the lot.");
+				System.out.println("Please enter the car id for the car you are removing from the lot.");
 				carId = Integer.parseInt(sc.nextLine());
 				
 				// Remove the car from the lot
@@ -112,10 +112,10 @@ public class EmployeeMenu {
 				break;
 				
 			case 5:
-				log.info("Logging out....");
+				System.out.println("Logging out....");
 				break;
 				
-			default: log.info("Invalid menu option. Please retry selecting one of the mentioned options.");
+			default: System.out.println("Invalid menu option. Please retry selecting one of the mentioned options.");
 				break;
 				
 			}

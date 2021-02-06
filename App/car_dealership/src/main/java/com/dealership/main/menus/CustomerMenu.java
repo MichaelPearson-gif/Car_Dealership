@@ -43,13 +43,13 @@ public class CustomerMenu {
 		do {
 			
 			// Customer menu options
-			log.info("Welcome back " + username + ". What would you like to do?");
-			log.info("");
-			log.info("1) View cars on the lot");
-			log.info("2) Make an offer on a car");
-			log.info("3) View all your cars");
-			log.info("4) View remaining payments on a car");
-			log.info("5) Make a Payment");
+			System.out.println("Welcome back " + username + ". What would you like to do?");
+			System.out.println("");
+			System.out.println("1) View cars on the lot");
+			System.out.println("2) Make an offer on a car");
+			System.out.println("3) View all your cars");
+			System.out.println("4) View remaining payments on a car");
+			System.out.println("5) Make a Payment");
 			System.out.println("6) Logout");
 			
 			// Parse through the switch case variable
@@ -62,32 +62,32 @@ public class CustomerMenu {
 			// Switch Cases
 			switch(ch) {
 			case 1:
-				log.info("Printing all cars on the lot....");
-				log.info("");
-				log.info(carsService.allCarsOnLot());
-				log.info("");
+				System.out.println("Printing all cars on the lot....");
+				System.out.println("");
+				System.out.println(carsService.allCarsOnLot());
+				System.out.println("");
 				break;
 				
 			case 2:
 				// Create an offer object
 				Offers offer = new Offers();
-				log.info("Please enter the following ifo to make your offer");
-				log.info("");
+				System.out.println("Please enter the following ifo to make your offer");
+				System.out.println("");
 				offer.setUsername(username);
-				log.info("Please enter the car id for the car you wish to put an offer on.");
+				System.out.println("Please enter the car id for the car you wish to put an offer on.");
 				offer.setCarId(Integer.parseInt(sc.nextLine()));
-				log.info("");
-				log.info("How much is your offer?");
+				System.out.println("");
+				System.out.println("How much is your offer?");
 				offer.setOffer(Double.parseDouble(sc.nextLine()));
-				log.info("");
+				System.out.println("");
 				offersService.makeOffer(offer);
 				break;
 				
 			case 3:
-				log.info("Printing all your car details....");
-				log.info("");
-				log.info(carsService.customerCars(username));
-				log.info("");
+				System.out.println("Printing all your car details....");
+				System.out.println("");
+				System.out.println(carsService.customerCars(username));
+				System.out.println("");
 				break;
 				
 			case 4:
@@ -118,7 +118,7 @@ public class CustomerMenu {
 				System.out.println("Logging out.........");
 				break;
 				
-			default: log.info("Invalid menu option. Please retry selecting one of the mentioned options.");
+			default: System.out.println("Invalid menu option. Please retry selecting one of the mentioned options.");
 				break;
 				
 			}

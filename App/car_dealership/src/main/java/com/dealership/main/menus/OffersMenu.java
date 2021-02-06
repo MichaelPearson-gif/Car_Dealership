@@ -32,17 +32,17 @@ public class OffersMenu {
 	public void offersMenu() throws BusinessException {
 
 		// Print out all pending car offers
-		log.info("Printing all pending car offers...");
-		log.info(offersService.allOffers());
-		log.info("");
+		System.out.println("Printing all pending car offers...");
+		System.out.println(offersService.allOffers());
+		System.out.println("");
 
 		// Loop through the options
 		do {
 
-			log.info("What would you like to do?");
-			log.info("1) View all pending offers for a car");
-			log.info("2) Approve or Decline offers");
-			log.info("3) Return to the Employee Menu");
+			System.out.println("What would you like to do?");
+			System.out.println("1) View all pending offers for a car");
+			System.out.println("2) Approve or Decline offers");
+			System.out.println("3) Return to the Employee Menu");
 
 			// Parse through the switch case variable
 			try {
@@ -58,12 +58,12 @@ public class OffersMenu {
 				// Create variables to store user input data
 				int carId;
 
-				log.info("");
-				log.info("Please enter the car id you wish to look for offers for.");
+				System.out.println("");
+				System.out.println("Please enter the car id you wish to look for offers for.");
 				carId = Integer.parseInt(sc.nextLine());
-				log.info("Printing all offers for car id " + carId + "....");
-				log.info("");
-				log.info(offersService.carOffers(carId));
+				System.out.println("Printing all offers for car id " + carId + "....");
+				System.out.println("");
+				System.out.println(offersService.carOffers(carId));
 				break;
 
 			case 2:
@@ -72,11 +72,11 @@ public class OffersMenu {
 				int offerId;
 				String status;
 
-				log.info("");
-				log.info("Please enter the offer id you wish to approve or decline");
+				System.out.println("");
+				System.out.println("Please enter the offer id you wish to approve or decline");
 				offerId = Integer.parseInt(sc.nextLine());
-				log.info("");
-				log.info("Please enter either Approved or Declined");
+				System.out.println("");
+				System.out.println("Please enter either Approved or Declined");
 				status = sc.nextLine();
 
 				// Send info to service layer
@@ -85,12 +85,12 @@ public class OffersMenu {
 				break;
 
 			case 3:
-				log.info("Returning to the Employee Menu");
-				log.info("");
+				System.out.println("Returning to the Employee Menu");
+				System.out.println("");
 				break;
 
 			default:
-				log.info("Invalid menu option. Please select one of the mentioned options.");
+				System.out.println("Invalid menu option. Please select one of the mentioned options.");
 				break;
 			}
 

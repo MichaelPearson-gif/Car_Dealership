@@ -41,25 +41,24 @@ public class RegisterMenu {
 		
 		try {
 			// Getting User Info
-			log.info("Please fill out the info below");
-			log.info("");
-			log.info("Username");
+			System.out.println("Please fill out the info below");
+			System.out.println("");
+			System.out.println("Username");
 			user.setUsername(sc.nextLine());
-			log.info("");
-			log.info("Password");
+			System.out.println("");
+			System.out.println("Password");
 			user.setPasswords(sc.nextLine());
-			log.info("");
-			log.info("Please enter your full name");
+			System.out.println("");
+			System.out.println("Please enter your full name");
 			user.setUsersname(sc.nextLine());
-			log.info("");
-			log.info("Date of birth (yyyy-mm-dd)");
+			System.out.println("");
+			System.out.println("Date of birth (yyyy-mm-dd)");
 			user.setDob(sdf.parse(sc.nextLine()));
 			
 			userService.createUser(user);
 			
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 		
 		

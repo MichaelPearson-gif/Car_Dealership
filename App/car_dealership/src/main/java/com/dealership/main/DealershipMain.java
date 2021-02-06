@@ -13,8 +13,8 @@ public class DealershipMain {
 	// Logger variable
 	private static Logger log = Logger.getLogger(DealershipMain.class);
 	
-	private static RegisterMenu register;
-	private static LoginMenu login;
+	private static RegisterMenu register = new RegisterMenu();
+	private static LoginMenu login = new LoginMenu();
 	
 	// Create a Scanner
 	private static Scanner sc = new Scanner(System.in);
@@ -28,13 +28,13 @@ public class DealershipMain {
 		do {
 			
 			// Welcome messages with choices that the user can choose from
-			log.info("Welcome to The Java Dealership where our coffee is hot and our prices are hotter!");
-			log.info("----------------------------------------------------------");
-			log.info("What would you like to do?");
-			log.info("");
-			log.info("1) Create a Java Dealership account");
-			log.info("2) Login");
-			log.info("3) Exit");
+			System.out.println("Welcome to The Java Dealership where our coffee is hot and our prices are hotter!");
+			System.out.println("----------------------------------------------------------");
+			System.out.println("What would you like to do?");
+			System.out.println("");
+			System.out.println("1) Create a Java Dealership account");
+			System.out.println("2) Login");
+			System.out.println("3) Exit");
 			
 			// Parse the Switch case variable
 			try {
@@ -66,10 +66,10 @@ public class DealershipMain {
 				break;
 				
 			case 3:
-				log.info("Thank you for visiting The Java Dealership. We hope to see you again real soon.");
+				System.out.println("Thank you for visiting The Java Dealership. We hope to see you again real soon.");
 				break;
 				
-			default: log.info("Invalid menu option. Please enter an number from 1-3 to the corresponding menu option");
+			default: System.out.println("Invalid menu option. Please enter an number from 1-3 to the corresponding menu option");
 				break;
 			
 			}

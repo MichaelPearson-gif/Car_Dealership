@@ -37,10 +37,10 @@ public class LoginMenu {
 		do {
 			
 			// User choices
-			log.info("Please select one of the following choices");
-			log.info("");
-			log.info("1) Input login credentials");
-			log.info("2) Go back to the Main Menu");
+			System.out.println("Please select one of the following choices");
+			System.out.println("");
+			System.out.println("1) Input login credentials");
+			System.out.println("2) Go back to the Main Menu");
 			
 			// Parse through the switch case variable
 			try {
@@ -53,10 +53,10 @@ public class LoginMenu {
 			switch(ch) {
 			case 1:
 				// Get the user inputs
-				log.info("Please enter you username");
+				System.out.println("Please enter you username");
 				String username = sc.nextLine();
-				log.info("");
-				log.info("Please enter in your password");
+				System.out.println("");
+				System.out.println("Please enter in your password");
 				String password = sc.nextLine();
 				
 				// Check to see if the username is an employee or customer
@@ -67,7 +67,7 @@ public class LoginMenu {
 						// Send them to the employee menu
 						employee.employeeMenu(username);
 					}else {
-						log.info("The password you entered was incorrect. Please try again.");
+						System.out.println("The password you entered was incorrect. Please try again.");
 					}
 					
 				}else {
@@ -77,17 +77,17 @@ public class LoginMenu {
 						// Send them to the customer menu
 						customer.customerMenu(username);
 					}else {
-						log.info("The password you entered was incorrect. Please try again.");
+						System.out.println("The password you entered was incorrect. Please try again.");
 					}
 					
 				}
 				break;
 				
 			case 2:
-				log.info("Going backto the Main Menu");
+				System.out.println("Going backto the Main Menu");
 				break;
 				
-			default: log.info("Invalid menu option. Please retry selecting one of the mentioned options.");
+			default: System.out.println("Invalid menu option. Please retry selecting one of the mentioned options.");
 				break;
 			}
 			
