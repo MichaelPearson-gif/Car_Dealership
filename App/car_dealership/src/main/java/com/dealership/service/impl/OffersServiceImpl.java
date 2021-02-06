@@ -9,8 +9,10 @@ import com.dealership.dao.OffersDAO;
 import com.dealership.dao.impl.OffersDAOImpl;
 import com.dealership.exceptions.BusinessException;
 import com.dealership.model.Offers;
+import com.dealership.model.Payment;
 import com.dealership.service.CarsService;
 import com.dealership.service.OffersService;
+import com.dealership.service.PaymentService;
 
 public class OffersServiceImpl implements OffersService {
 	
@@ -20,8 +22,9 @@ public class OffersServiceImpl implements OffersService {
 	// Connection between service layer and dao layer
 	private OffersDAO offersDAO = new OffersDAOImpl();
 	
-	// Connection between offers service layer and cars service layer
+	// Connection between service layers
 	private CarsService carsService = new CarsServiceImpl();
+	private PaymentService paymentService = new PaymentServiceImpl();
 
 	// Customer makes an offer on a car
 	@Override
@@ -57,7 +60,7 @@ public class OffersServiceImpl implements OffersService {
 		List<Offers> filteredOffers = offersDAO.allOffers();
 		
 		// Remove all offers that do not contain the requested car id
-		filteredOffers.removeIf((o) -> o.getCarId() == carId);
+		filteredOffers.removeIf((o) -> o.getCarId() != carId);
 		
 		return filteredOffers;
 	}
@@ -73,6 +76,26 @@ public class OffersServiceImpl implements OffersService {
 			int carId;
 			String username;
 			
+			//---------------------------------------------------------------
+			// Creating a Payment Object and getting the offer amount
+			
+			// Create a Payment object so as to create an initial payment
+			Payment initPayment = new Payment();
+			
+			// Create an offer object to get all the approved offer's data
+			List<Offers> approvedList = offersDAO.allOffers();
+			approvedList.removeIf((o) -> o.getOfferId() != offerId);
+			
+			Offers approvedOffer = new Offers();
+			
+			// Loop through the list and set it to the approvedOffer object
+			// Only need the offer amount for the payment object
+			for(Offers o : approvedList) {
+				approvedOffer.setOffer(o.getOffer());
+			}
+			
+			//-----------------------------------------------------------------
+			
 			// Employee making updates
 			offersDAO.statusUpdate(offerId, status);
 			
@@ -81,6 +104,17 @@ public class OffersServiceImpl implements OffersService {
 			username = offersDAO.getOfferUsername(offerId);
 			
 			// System updates
+			
+			//-----------------------------------------------------------------
+			// Setting the offer amount and car id to the payment object and sending it to the 
+			// payment service layer
+			
+			initPayment.setCarId(carId);
+			initPayment.setTotalPayment(approvedOffer.getOffer());
+			paymentService.makePayment(initPayment);
+			
+			
+			//-----------------------------------------------------------------
 			
 			// Update the car
 			carsService.carUpdate(carId, username);
@@ -97,7 +131,7 @@ public class OffersServiceImpl implements OffersService {
 				}
 				
 				// Print out a message saying that the updates was successful
-				log.info("All updates were successful");
+				log.info("All other offers have been updated");
 				
 			}else {
 				// Print out a message saying that the updates was successful
