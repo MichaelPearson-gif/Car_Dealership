@@ -32,7 +32,7 @@ public class CarsDAOImpl implements CarsDAO {
 		try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			// SQL statement
-			String sql = "INSERT INTO car_dealership.cars(owner_name, lot, make, model, color, price)"
+			String sql = "INSERT INTO car_dealership.cars(own_status, lot, make, model, color, price)"
 					+ "VALUES(?,?,?,?,?,?)";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -79,7 +79,7 @@ public class CarsDAOImpl implements CarsDAO {
 			while(resultSet.next()) {
 				Cars car = new Cars();
 				car.setCarId(resultSet.getInt("car_id"));
-				car.setOwnerStatus(resultSet.getString("owner_status"));
+				car.setOwnerStatus(resultSet.getString("own_status"));
 				car.setLot(resultSet.getString("lot"));
 				car.setMake(resultSet.getInt("make"));
 				car.setModel(resultSet.getString("model"));
@@ -158,7 +158,7 @@ public class CarsDAOImpl implements CarsDAO {
 		try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			// SQL statement. Using update join and subqueries to complete it
-			String sql = "UPDATE car_dealership.cars SET owner_status = Owned, lot = 'off', username =? WHERE car_id = ?";
+			String sql = "UPDATE car_dealership.cars SET own_status = Owned, lot = 'off', username =? WHERE car_id = ?";
 			
 			// Make the prepared statement
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
