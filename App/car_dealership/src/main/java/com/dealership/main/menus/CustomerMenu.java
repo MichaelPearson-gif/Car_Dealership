@@ -91,7 +91,14 @@ public class CustomerMenu {
 				break;
 				
 			case 4:
-				log.info("This function is under construction.");
+				// Initialize an int primitive type to store customers input
+				int carId;
+				System.out.println("Enter the car id you wish to view remaining payments for.");
+				carId = Integer.parseInt(sc.nextLine());
+				
+				// Send to the Payment service layer
+				paymentService.remainingPayment(carId);
+				
 				break;
 				
 			case 5:
