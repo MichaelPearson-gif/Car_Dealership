@@ -93,7 +93,7 @@ public class CarsDAOImpl implements CarsDAO {
 			
 			// Print out a message to the user if they have no cars they own
 			if(myCars.size() == 0) {
-				log.info("Sorry you do not have any cars purchased from our dealership. You should go check out all the awesome cars we have in store for you!");
+				System.out.println("Sorry you do not have any cars purchased from our dealership. You should go check out all the awesome cars we have in store for you!");
 			}
 			
 		}catch (ClassNotFoundException | SQLException e) {
@@ -114,7 +114,7 @@ public class CarsDAOImpl implements CarsDAO {
 		try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			// SQL query statement
-			String sql = "SELECT car_id, make, model, color, price FROM car_dealership.cars WHERE lot = 'on'";
+			String sql = "SELECT * FROM car_dealership.cars WHERE lot = 'on'";
 			
 			// Make the Prepared Statement
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -126,10 +126,13 @@ public class CarsDAOImpl implements CarsDAO {
 			while(resultSet.next()) {
 				Cars car = new Cars();
 				car.setCarId(resultSet.getInt("car_id"));
+				car.setOwnerStatus(resultSet.getString("own_status"));
+				car.setLot(resultSet.getString("lot"));
 				car.setMake(resultSet.getInt("make"));
 				car.setModel(resultSet.getString("model"));
 				car.setColor(resultSet.getString("color"));
 				car.setPrice(resultSet.getDouble("price"));
+				car.setUsername(resultSet.getString("username"));
 				
 				// Add each car object to the list
 				allCars.add(car);

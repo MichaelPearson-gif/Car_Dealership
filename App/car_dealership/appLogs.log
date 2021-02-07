@@ -1,4 +1,4 @@
-{TRACE}  CarsDAOImpl  CarsDAOImpl.java  145  ERROR: syntax error at or near "on"
-  Position: 79  06-Feb-2021 Saturday PST 16:06:40
-{TRACE}  CarsDAOImpl  CarsDAOImpl.java  145  ERROR: syntax error at or near "on"
-  Position: 79  06-Feb-2021 Saturday PST 16:10:19
+{INFO}  CarsDAOImpl  CarsDAOImpl.java  96  Sorry you do not have any cars purchased from our dealership. You should go check out all the awesome cars we have in store for you!  06-Feb-2021 Saturday PST 16:25:21
+{TRACE}  OffersDAOImpl  OffersDAOImpl.java  50  ERROR: INSERT has more expressions than target columns
+  Position: 96  06-Feb-2021 Saturday PST 16:26:36
+{ERROR}  PaymentDAOImpl  PaymentDAOImpl.java  151  There is no payment history for the car id: 100  06-Feb-2021 Saturday PST 16:34:16

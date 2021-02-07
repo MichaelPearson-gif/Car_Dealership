@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.dealership.exceptions.BusinessException;
+import com.dealership.model.Cars;
 import com.dealership.model.Offers;
 import com.dealership.model.Payment;
 import com.dealership.service.CarsService;
@@ -64,7 +65,11 @@ public class CustomerMenu {
 			case 1:
 				System.out.println("Printing all cars on the lot....");
 				System.out.println("");
-				System.out.println(carsService.allCarsOnLot());
+				// Iterate through each car in the list and print it out
+				for(Cars car : carsService.allCarsOnLot()) {
+					System.out.println("\n" + car);
+				}
+				
 				System.out.println("");
 				break;
 				

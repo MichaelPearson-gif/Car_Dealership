@@ -34,7 +34,7 @@ public class OffersDAOImpl implements OffersDAO {
 			
 			// SQL statement
 			String sql = "INSERT INTO car_dealership.offers(username, car_id, offer, status) "
-					+ "VALUES(DEFAULT, ?, ?, ?, ?)";
+					+ "VALUES(?, ?, ?, ?)";
 			
 			// Make the PreparedStatement
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
