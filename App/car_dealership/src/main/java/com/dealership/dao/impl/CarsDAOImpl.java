@@ -114,7 +114,7 @@ public class CarsDAOImpl implements CarsDAO {
 		try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			// SQL query statement
-			String sql = "SELECT car_id, make, model, color, price FROM car_dealership.cars WHERE lot = on";
+			String sql = "SELECT car_id, make, model, color, price FROM car_dealership.cars WHERE lot = 'on'";
 			
 			// Make the Prepared Statement
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
