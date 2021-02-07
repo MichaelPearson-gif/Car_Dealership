@@ -122,7 +122,7 @@ public class OffersDAOImpl implements OffersDAO {
 			
 			// set the variable count equal to the the value of the resultSet
 			if(resultSet.next()) {
-				carId = resultSet.getInt("count_id");
+				carId = resultSet.getInt("car_id");
 			}
 			
 		}catch (ClassNotFoundException | SQLException e) {

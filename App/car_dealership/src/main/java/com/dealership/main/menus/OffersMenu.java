@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.dealership.exceptions.BusinessException;
+import com.dealership.model.Offers;
 import com.dealership.service.OffersService;
 import com.dealership.service.impl.OffersServiceImpl;
 
@@ -33,7 +34,10 @@ public class OffersMenu {
 
 		// Print out all pending car offers
 		System.out.println("Printing all pending car offers...");
-		System.out.println(offersService.allOffers());
+		// Iterate through the offers list and print out each offer on the next line
+		for (Offers offer : offersService.allOffers()) {
+			System.out.println("\n" + offer);
+		}
 		System.out.println("");
 
 		// Loop through the options
@@ -62,8 +66,11 @@ public class OffersMenu {
 				System.out.println("Please enter the car id you wish to look for offers for.");
 				carId = Integer.parseInt(sc.nextLine());
 				System.out.println("Printing all offers for car id " + carId + "....");
-				System.out.println("");
-				System.out.println(offersService.carOffers(carId));
+				
+				// Iterate through the offers list and print out each offer on the next line
+				for (Offers offer : offersService.carOffers(carId)) {
+					System.out.println("\n" + offer);
+				}
 				break;
 
 			case 2:

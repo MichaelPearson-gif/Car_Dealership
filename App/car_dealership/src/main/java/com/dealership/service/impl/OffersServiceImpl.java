@@ -70,7 +70,7 @@ public class OffersServiceImpl implements OffersService {
 	public void statusUpdate(int offerId, String status) throws BusinessException {
 		
 		// If employee approves the offer, make the following updates
-		if(status == "Approved") {
+		if(status.equals("Approved")) {
 			
 			// Create variables to store the car id and the username on the offer
 			int carId;
@@ -131,22 +131,22 @@ public class OffersServiceImpl implements OffersService {
 				}
 				
 				// Print out a message saying that the updates was successful
-				log.info("All other offers have been updated");
+				System.out.println("All other offers have been updated");
 				
 			}else {
 				// Print out a message saying that the updates was successful
-				log.info("All updates were successful");
+				System.out.println("All updates were successful");
 			}
 			
-		}else if(status == "Declined") {
+		}else if(status.equals("Declined")) {
 			// Update the status
 			offersDAO.statusUpdate(offerId, status);
 			
 			// Print out a message saying that the updates was successful
-			log.info("All updates were successful");
+			System.out.println("All updates were successful");
 		}else {
 			// Print a message to the employee about an invalid option
-			log.info("Invalid status! Please try again.");
+			System.out.println("Invalid status! Please try again.");
 		}
 		
 	}
