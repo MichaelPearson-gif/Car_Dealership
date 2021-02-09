@@ -80,7 +80,7 @@ class CarsServiceImplTest {
 			// Create a list object of the carsService.customerCars test
 			List<Cars> returnedCars = carsService.customerCars("testGuy");
 			
-			// Loop throught the returnedCars list to test it
+			// Loop throught the returnedCars list to test and make sure the username matches
 			for(Cars car : returnedCars) {
 				Assertions.assertEquals("testGuy", car.getUsername());
 			}
@@ -94,7 +94,31 @@ class CarsServiceImplTest {
 
 	@Test
 	void testAllCarsOnLot() {
-		fail("Not yet implemented");
+		
+		// Create a list of cars to be expected to returned
+		List<Cars> allCars = new ArrayList<>(Arrays.asList(new Cars(200, "None", "on", 2006, "Acura MDX", "White", 5000.00, null),
+				new Cars(201, "None", "on", 2010, "Honda Civic", "Red", 7000.00, null),
+				new Cars(199, "None", "on", 2000, "Toyota Carolla", "Blue", 2000.00, null),
+				new Cars(210, "None", "on", 2019, "Honda Accord", "Black", 23720.00, null)));
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(carsDAOImpl.allCarsOnLot()).thenReturn(allCars);
+			
+			// Create a list object of the carsService.allCars test
+			List<Cars> returnedLotCars = carsService.allCarsOnLot();
+			
+			//Loop throught the returnedLotCars list to test and make sure all cars are on the lot
+			for(Cars car : returnedLotCars) {
+				Assertions.assertEquals("on", car.getLot());
+			}
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
