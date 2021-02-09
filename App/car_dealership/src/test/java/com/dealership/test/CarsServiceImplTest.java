@@ -122,8 +122,28 @@ class CarsServiceImplTest {
 	}
 
 	@Test
-	void testCarUpdateIntString() {
-		fail("Not yet implemented");
+	void testCarUpdateWhenOfferIsApproved() {
+		
+		// Create a dummy car id and username for inputs
+		int carId = 200;
+		String username = "testGuy";
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(carsDAOImpl.carUpdate(carId, username)).thenReturn(1);
+			
+			// Create an int value to store the updateCar service method
+			int c = carsService.carUpdate(carId, username);
+			
+			// Use assertEquals to check if the update worked
+			Assertions.assertEquals(1, c);
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
