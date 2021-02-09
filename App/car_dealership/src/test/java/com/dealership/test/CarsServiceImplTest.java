@@ -2,6 +2,10 @@ package com.dealership.test;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -64,7 +68,28 @@ class CarsServiceImplTest {
 
 	@Test
 	void testCustomerCars() {
-		fail("Not yet implemented");
+		
+		// Create a list of cars to be expected to returned
+		List<Cars> myCars = new ArrayList<>(Arrays.asList(new Cars(200, "Owned", "off", 2006, "Acura MDX", "White", 5000.00, "testGuy"),
+				new Cars(201, "Owned", "off", 2010, "Honda Civic", "Red", 7000.00, "testGuy")));
+		
+		try {
+			// Tell Mockito what to mock for this test
+			Mockito.when(carsDAOImpl.customerCars("testGuy")).thenReturn(myCars);
+			
+			// Create a list object of the carsService.customerCars test
+			List<Cars> returnedCars = carsService.customerCars("testGuy");
+			
+			// Loop throught the returnedCars list to test it
+			for(Cars car : returnedCars) {
+				Assertions.assertEquals("testGuy", car.getUsername());
+			}
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
