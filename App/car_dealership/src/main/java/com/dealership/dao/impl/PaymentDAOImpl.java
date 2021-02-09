@@ -100,7 +100,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 						resultSet.getDouble(4),
 						resultSet.getDouble(5),
 						resultSet.getInt(6),
-						resultSet.getDate(6)
+						resultSet.getDate(7)
 						);
 			}
 			

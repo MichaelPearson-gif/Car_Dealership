@@ -1,18 +1,12 @@
 package com.dealership.main;
 
-import java.time.LocalDate;
+
 import java.util.Scanner;
-
-import org.apache.log4j.Logger;
-
 import com.dealership.exceptions.BusinessException;
 import com.dealership.main.menus.LoginMenu;
 import com.dealership.main.menus.RegisterMenu;
 
 public class DealershipMain {
-
-	// Logger variable
-	private static Logger log = Logger.getLogger(DealershipMain.class);
 	
 	private static RegisterMenu register = new RegisterMenu();
 	private static LoginMenu login = new LoginMenu();
