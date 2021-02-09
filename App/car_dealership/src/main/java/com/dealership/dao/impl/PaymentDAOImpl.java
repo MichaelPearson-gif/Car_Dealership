@@ -20,16 +20,14 @@ public class PaymentDAOImpl implements PaymentDAO {
 	
 	// Logger variable
 	Logger log = Logger.getLogger(PaymentDAOImpl.class);
-	
-	// Import LocalDate
-	LocalDate ld = LocalDate.now();
-	// Convert to a sql.Date format
-	Date date = Date.valueOf(ld);
 
 	@Override
 	public int makePayment(Payment payment) throws BusinessException {
 		
 		int c = 0;
+		LocalDate ld = LocalDate.now();
+		Date sqlDate = Date.valueOf(ld);
+		
 		
 		// Calculate the remaining payments
 		// Assume that each payment is the same as the calculated monthly amount
@@ -41,11 +39,11 @@ public class PaymentDAOImpl implements PaymentDAO {
 			
 			// Using an if statement to make sure the customer does not accidentally pay an for an extra month
 			if(newRemainingAmount < 0) {
-				log.info("The payment was rejected because the car is already paid off");
+				System.out.println("The payment was rejected because the car is already paid off");
 			}else {
 			
 				// SQL statement
-				String sql = "INSERT INTO car_dealership.payments VALUES(DEFAULT, ?, ?, ?, ?, ?, ?)";
+				String sql = "INSERT INTO car_dealership.payments(car_id, amount, total_payment, monthly_payment, remaining_payments, date) VALUES(?, ?, ?, ?, ?, ?)";
 
 				// Make a PreparedStatement
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -54,7 +52,8 @@ public class PaymentDAOImpl implements PaymentDAO {
 				preparedStatement.setDouble(3, payment.getTotalPayment());
 				preparedStatement.setDouble(4, payment.getMonthlyPayment());
 				preparedStatement.setInt(5, newRemainingAmount);
-				preparedStatement.setDate(6, date);
+//				preparedStatement.setDate(6, new java.sql.Date(payment.getDate().getTime()));
+				preparedStatement.setDate(6, sqlDate);
 				
 				// Override c with the query execution
 				c = preparedStatement.executeUpdate();
@@ -147,9 +146,9 @@ public class PaymentDAOImpl implements PaymentDAO {
 			}
 			
 			// Condition where there are no payments
-			if(paymentList.size() == 0) {
-				log.error("There is no payment history for the car id: " + carId);
-			}
+//			if(paymentList.size() == 0) {
+//				log.error("There is no payment history for the car id: " + carId);
+//			}
 			
 		}catch (ClassNotFoundException | SQLException e) {
 			// Log the error message

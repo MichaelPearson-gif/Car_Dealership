@@ -70,7 +70,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		List<Payment> pastPayments = allPayments(payment.getCarId());
 		
-		if(pastPayments.equals(null)) {
+		if(pastPayments.size() == 0) {
 			// When an offer is accepted, create a payment record with the amount of 0
 			// This way there will be a record of the monthly payments
 			payment.setAmount(0.00);

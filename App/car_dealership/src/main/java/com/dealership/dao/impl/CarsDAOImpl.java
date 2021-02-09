@@ -161,7 +161,7 @@ public class CarsDAOImpl implements CarsDAO {
 		try (Connection connection = PostgresqlConnection.getConnection()){
 			
 			// SQL statement. Using update join and subqueries to complete it
-			String sql = "UPDATE car_dealership.cars SET own_status = Owned, lot = 'off', username =? WHERE car_id = ?";
+			String sql = "UPDATE car_dealership.cars SET own_status = 'Owned', lot = 'off', username =? WHERE car_id = ?";
 			
 			// Make the prepared statement
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
