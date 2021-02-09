@@ -1,7 +1,5 @@
 package com.dealership.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -124,7 +122,7 @@ class CarsServiceImplTest {
 	@Test
 	void testCarUpdateWhenOfferIsApproved() {
 		
-		// Create a dummy car id and username for inputs
+		// Create a dummy car id and username to use as input values
 		int carId = 200;
 		String username = "testGuy";
 		
@@ -147,8 +145,27 @@ class CarsServiceImplTest {
 	}
 
 	@Test
-	void testCarUpdateInt() {
-		fail("Not yet implemented");
+	void testCarUpdateWhenEmployeeRemovesIt() {
+		
+		// Create a dummy carId to use as an input value
+		int carId = 120;
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(carsDAOImpl.carUpdate(carId)).thenReturn(1);
+			
+			// Create an int value to store the updateCar service method
+			int c = carsService.carUpdate(carId);
+			
+			// Use assertEquals to check if the update worked
+			Assertions.assertEquals(1, c);
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
