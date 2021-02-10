@@ -99,74 +99,6 @@ public class OffersDAOImpl implements OffersDAO {
 		
 		return pendingOffers;
 	}
-	
-	// Get the car_id of the approved offer
-	@Override
-	public int getOfferCarId(int offerId) throws BusinessException {
-		
-		// carId variable
-		int carId = 0;
-		
-		// Connect and update to the DB
-		try (Connection connection = PostgresqlConnection.getConnection()){
-			
-			// SQL statement
-			String sql = "SELECT car_id FROM car_dealership.offers WHERE offer_id = ?";
-			
-			// Make a PreparedStatement
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, offerId);
-			
-			// Make the ResultSet
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			// set the variable count equal to the the value of the resultSet
-			if(resultSet.next()) {
-				carId = resultSet.getInt("car_id");
-			}
-			
-		}catch (ClassNotFoundException | SQLException e) {
-			// Log the error message
-			log.trace(e.getMessage());
-			throw new BusinessException("Internal error occured contact System Admin");
-		}
-		
-		return carId;
-	}
-
-	// Get the username of the approved offer
-	@Override
-	public String getOfferUsername(int offerId) throws BusinessException {
-		
-		// carId variable
-		String username = null;
-		
-		// Connect and update to the DB
-		try (Connection connection = PostgresqlConnection.getConnection()){
-			
-			// SQL statement
-			String sql = "SELECT username FROM car_dealership.offers WHERE offer_id = ?";
-			
-			// Make a PreparedStatement
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, offerId);
-			
-			// Make the ResultSet
-			ResultSet resultSet = preparedStatement.executeQuery();
-			
-			// set the variable count equal to the the value of the resultSet
-			if(resultSet.next()) {
-				username = resultSet.getString("username");
-			}
-			
-		}catch (ClassNotFoundException | SQLException e) {
-			// Log the error message
-			log.trace(e.getMessage());
-			throw new BusinessException("Internal error occured contact System Admin");
-		}
-		
-		return username;
-	}
 
 	// Employee updates status of an offer
 	@Override
@@ -224,6 +156,47 @@ public class OffersDAOImpl implements OffersDAO {
 		}
 		
 		return c;
+	}
+
+	@Override
+	public Offers getOffer(int offerId) throws BusinessException {
+		
+		// Create an null Offers object
+		Offers offer = null;
+		
+		// Connect and Query the DB
+		try (Connection connection = PostgresqlConnection.getConnection()){
+			
+			// SQL statement
+			String sql = "SELECT * FROM car_dealership.offers WHERE offer_id = ?";
+			
+			// Make a PreparedStatement
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, offerId);
+			
+			// Create the ResultSet
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			// Populate the offer object
+			if(resultSet.next()) {
+				
+				offer = new Offers(
+						resultSet.getInt(1),
+						resultSet.getString(2),
+						resultSet.getInt(3),
+						resultSet.getDouble(4),
+						resultSet.getString(5)
+						);
+				
+			}
+			
+		}catch (ClassNotFoundException | SQLException e) {
+			// Log the error message
+			log.trace(e.getMessage());
+			throw new BusinessException("Internal error occured contact System Admin");
+		}
+		
+		return offer;
 	}
 
 }

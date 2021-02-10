@@ -83,16 +83,7 @@ public class OffersServiceImpl implements OffersService {
 			Payment initPayment = new Payment();
 			
 			// Create an offer object to get all the approved offer's data
-			List<Offers> approvedList = offersDAO.allOffers();
-			approvedList.removeIf((o) -> o.getOfferId() != offerId);
-			
-			Offers approvedOffer = new Offers();
-			
-			// Loop through the list and set it to the approvedOffer object
-			// Only need the offer amount for the payment object
-			for(Offers o : approvedList) {
-				approvedOffer.setOffer(o.getOffer());
-			}
+			Offers approvedOffer = offersDAO.getOffer(offerId);
 			
 			//-----------------------------------------------------------------
 			
@@ -100,8 +91,8 @@ public class OffersServiceImpl implements OffersService {
 			offersDAO.statusUpdate(offerId, status);
 			
 			// Get the car id and username
-			carId = offersDAO.getOfferCarId(offerId);
-			username = offersDAO.getOfferUsername(offerId);
+			carId = approvedOffer.getCarId();
+			username = approvedOffer.getUsername();
 			
 			// System updates
 			
