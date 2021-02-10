@@ -78,7 +78,7 @@ class CarsServiceImplTest {
 			// Create a list object of the carsService.customerCars test
 			List<Cars> returnedCars = carsService.customerCars("testGuy");
 			
-			// Loop throught the returnedCars list to test and make sure the username matches
+			// Loop through the returnedCars list to test and make sure the username matches
 			for(Cars car : returnedCars) {
 				Assertions.assertEquals("testGuy", car.getUsername());
 			}

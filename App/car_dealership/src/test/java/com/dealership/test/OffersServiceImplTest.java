@@ -2,6 +2,10 @@ package com.dealership.test;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -64,9 +68,33 @@ class OffersServiceImplTest {
 		
 	}
 
+	// Test to make sure the status for each offer in this list says Pending
 	@Test
 	void testAllOffers() {
-		fail("Not yet implemented");
+		
+		// Create a dummy list of pending offers
+		List<Offers> myOffers = new ArrayList<>(Arrays.asList(new Offers(1000, "Drakebell", 104, 10000.00, "Pending"),
+				new Offers(1001, "TDog", 106, 5000.00, "Pending"),
+				new Offers(1002, "starGuy", 103, 20000.00, "Pending")));
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(offersDAOImpl.allOffers()).thenReturn(myOffers);
+			
+			// Create a list object to make the call to the allOffers service method
+			List<Offers> returnedOffers = offersService.allOffers();
+			
+			// Loop through the list to test that the status says Pending
+			for(Offers offer : returnedOffers) {
+				Assertions.assertEquals("Pending", offer.getStatus());
+			}
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
