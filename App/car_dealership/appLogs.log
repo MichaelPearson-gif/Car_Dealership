@@ -1,0 +1,2 @@
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 18:21:19
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 18:27:47

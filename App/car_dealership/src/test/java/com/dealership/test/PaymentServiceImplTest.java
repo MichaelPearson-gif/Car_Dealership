@@ -127,5 +127,39 @@ class PaymentServiceImplTest {
 		}
 		
 	}
+	
+	// Testing the customerPayment method
+	@Test
+	void testCustomerPayment() {
+		
+		// Create a dummy payment object for the first mock to return
+		Payment recentPayment = new Payment(10000, 120, 91.67, 5500.00, 91.67, 50, new Date(3142021));
+		
+		// Create a dummy payment object to pass through the test
+		Payment payment = new Payment();
+		
+		// Set some of the payment fields that will be occupied initially from UI or system
+		payment.setPaymentId(10005);
+		payment.setCarId(120);
+		payment.setDate(new Date(4142021));
+		
+		try {
+			
+			// Tell Mockito what to mock for this test
+			Mockito.when(paymentDAOImpl.latestPayment(120)).thenReturn(recentPayment);
+			Mockito.when(paymentDAOImpl.makePayment(payment)).thenReturn(1);
+			
+			// Create an int variable to store the result of the customerPayment method
+			int c = paymentService.customerPayment(payment);
+			
+			// Use assertEquals to test if the payment record was created
+			Assertions.assertEquals(1, c);
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

@@ -24,7 +24,7 @@ public class PaymentServiceImpl implements PaymentService {
 		// Create a variable to store the remaining payments and an object of Payment
 		// Both of which will initially be null
 		int numPayments = 0;
-		Payment payment = null;
+		Payment payment = new Payment();
 
 		try {
 			// Get the last payment info for this car
