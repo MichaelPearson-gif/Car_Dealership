@@ -101,8 +101,11 @@ public class CustomerMenu {
 				System.out.println("Enter the car id you wish to view remaining payments for.");
 				carId = Integer.parseInt(sc.nextLine());
 				
-				// Send to the Payment service layer
-				paymentService.remainingPayment(carId);
+				// Get the number of payments left from Payment service layer
+				int numPayments = paymentService.remainingPayment(carId);
+				
+				// Print a message to the customer with the result
+				System.out.println("You have " + numPayments + " payments left");
 				
 				break;
 				

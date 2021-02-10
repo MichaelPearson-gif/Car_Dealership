@@ -8,7 +8,7 @@ import com.dealership.model.Payment;
 public interface PaymentService {
 
 	// Customers can view remaining payments
-	public void remainingPayment(int carId) throws BusinessException;
+	public int remainingPayment(int carId) throws BusinessException;
 	
 	// Employee can view all payments on a car
 	public List<Payment> allPayments(int carId) throws BusinessException;
