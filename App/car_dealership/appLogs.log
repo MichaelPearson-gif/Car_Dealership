@@ -1,2 +1,19 @@
-{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 18:21:19
-{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 18:27:47
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 19:17:12
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(0) is not present in table "cars".  09-Feb-2021 Tuesday PST 19:21:54
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 19:21:54
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 19:55:39
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 19:55:39
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 20:00:31
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 20:00:31
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 20:06:16
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 20:06:16
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 20:08:19
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 20:08:19
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 20:38:59
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 20:38:59

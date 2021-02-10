@@ -1,5 +1,7 @@
 package com.dealership.test;
 
+import static org.mockito.Mockito.verify;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,12 +76,12 @@ class PaymentServiceImplTest {
 	void testAllPayments() {
 		
 		// Create a dummy variable for the carId to pass through the test
-		int carId = 105;
+		int carId = 100;
 		
 		// Create a list of payments to be expected to be returned
-		List<Payment> myPayments = new ArrayList<>(Arrays.asList(new Payment(10000, 105, 116.67, 7000.00, 116.67, 59, new Date(3242021)),
-				new Payment(10000, 105, 116.67, 7000.00, 116.67, 58, new Date(4242021)),
-				new Payment(10000, 105, 116.67, 7000.00, 116.67, 57, new Date(5242021))));
+		List<Payment> myPayments = new ArrayList<>(Arrays.asList(new Payment(10000, 100, 116.67, 7000.00, 116.67, 59, new Date(3242021)),
+				new Payment(10000, 100, 116.67, 7000.00, 116.67, 58, new Date(4242021)),
+				new Payment(10000, 100, 116.67, 7000.00, 116.67, 57, new Date(5242021))));
 		
 		try {
 			
@@ -104,11 +106,7 @@ class PaymentServiceImplTest {
 	void testMakePaymentByOffer() {
 		
 		// Make a dummy payment object to pass through the test
-		Payment payment = new Payment();
-		// Set some initial values that they system will automatically set
-		payment.setPaymentId(10000);
-		payment.setCarId(100);
-		payment.setTotalPayment(5000.00);
+		Payment payment = new Payment(10000, 130, 0.00, 5000.00, 83.33, 60, new Date(2172021));
 		
 		try {
 			
@@ -136,17 +134,12 @@ class PaymentServiceImplTest {
 		Payment recentPayment = new Payment(10000, 120, 91.67, 5500.00, 91.67, 50, new Date(3142021));
 		
 		// Create a dummy payment object to pass through the test
-		Payment payment = new Payment();
-		
-		// Set some of the payment fields that will be occupied initially from UI or system
-		payment.setPaymentId(10005);
-		payment.setCarId(120);
-		payment.setDate(new Date(4142021));
+		Payment payment = new Payment(10005, 120, 91.67, 5500.00, 91.67, 49, new Date(41420121));
 		
 		try {
 			
 			// Tell Mockito what to mock for this test
-			Mockito.when(paymentDAOImpl.latestPayment(120)).thenReturn(recentPayment);
+			Mockito.doNothing().when(paymentDAOImpl).latestPayment(120);
 			Mockito.when(paymentDAOImpl.makePayment(payment)).thenReturn(1);
 			
 			// Create an int variable to store the result of the customerPayment method
