@@ -3,6 +3,9 @@ package com.dealership.test;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -71,7 +74,31 @@ class PaymentServiceImplTest {
 
 	@Test
 	void testAllPayments() {
-		fail("Not yet implemented");
+		
+		// Create a dummy variable for the carId to pass through the test
+		int carId = 105;
+		
+		// Create a list of payments to be expected to be returned
+		List<Payment> myPayments = new ArrayList<>(Arrays.asList(new Payment(10000, 105, 116.67, 7000.00, 116.67, 59, new Date(3242021)),
+				new Payment(10000, 105, 116.67, 7000.00, 116.67, 58, new Date(4242021)),
+				new Payment(10000, 105, 116.67, 7000.00, 116.67, 57, new Date(5242021))));
+		
+		try {
+			
+			// Tell Mockito what to mock for this test
+			Mockito.when(paymentDAOImpl.allPayments(carId)).thenReturn(myPayments);
+			
+			// Create a list that will be set to the allPayments service method
+			List<Payment> returnedPayments = paymentService.allPayments(carId);
+			
+			// Use assertEquals to test if the size of the list is correct
+			Assertions.assertEquals(3, returnedPayments.size());
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Test
