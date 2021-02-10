@@ -158,5 +158,37 @@ class OffersServiceImplTest {
 	void testStatusUpdate() {
 		fail("Not yet implemented");
 	}
+	
+	// Tests the statusUpdate when the offer is Declined
+	@Test
+	void testStatusUpdateWhenDeclined() {
+		
+		// Create dummy variables to pass through the test
+		int offerId = 1010;
+		String status = "Declined";
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(offersDAOImpl.statusUpdate(offerId, status)).thenReturn(1);
+			
+			// Create an int variable to store the statusUpdate service method
+			int c = offersService.statusUpdate(offerId, status);
+			
+			// Test if the update is successful
+			Assertions.assertEquals(1, c);
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// Tests the statusUpdate when employee gives an invalid status
+	@Test
+	void testStatusUpdateWhenInvalid() {
+		fail("Not yet implemented");
+	}
 
 }
