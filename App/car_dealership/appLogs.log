@@ -17,3 +17,14 @@
 {TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
   Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 20:38:59
 {ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 20:38:59
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 22:05:12
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 22:05:12
+{TRACE}  PaymentDAOImpl  PaymentDAOImpl.java  51  ERROR: insert or update on table "payments" violates foreign key constraint "payments_car_id_fkey"
+  Detail: Key (car_id)=(130) is not present in table "cars".  09-Feb-2021 Tuesday PST 22:08:54
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 22:08:55
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 22:11:43
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 22:14:58
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 22:18:05
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 22:22:02
+{ERROR}  PaymentServiceImpl  PaymentServiceImpl.java  37  Cannot invoke "com.dealership.model.Payment.getRemainingPayments()" because "payment" is null  09-Feb-2021 Tuesday PST 22:24:15

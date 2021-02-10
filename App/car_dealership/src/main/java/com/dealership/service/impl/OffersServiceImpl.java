@@ -132,6 +132,7 @@ public class OffersServiceImpl implements OffersService {
 		}else {
 			// Print a message to the employee about an invalid option
 			System.out.println("Invalid status! Please try again.");
+			throw new BusinessException("Invalid status input.");
 		}
 		return c;
 		

@@ -1,11 +1,8 @@
 package com.dealership.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -154,9 +151,34 @@ class OffersServiceImplTest {
 		}
 	}
 
+
+	// Test the size of car offers
 	@Test
-	void testStatusUpdate() {
-		fail("Not yet implemented");
+	void testCarOffersSize() {
+		
+		// Create a dummy car id
+		int carId = 104;
+		
+		// Create a dummy list of pending offers
+		List<Offers> myOffers = new ArrayList<>(Arrays.asList(new Offers(1000, "Drakebell", 104, 10000.00, "Pending"),
+				new Offers(1001, "TDog", 104, 5000.00, "Pending"),
+				new Offers(1002, "starGuy", 104, 8000.00, "Pending")));
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(offersDAOImpl.allOffers()).thenReturn(myOffers);
+			
+			// Create a list object to make the call to the allOffers service method
+			List<Offers> returnedOffers = offersService.carOffers(carId);
+			
+			// Test the size of the list
+			Assertions.assertEquals(myOffers.size(), returnedOffers.size());
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	// Tests the statusUpdate when the offer is Declined
@@ -188,7 +210,23 @@ class OffersServiceImplTest {
 	// Tests the statusUpdate when employee gives an invalid status
 	@Test
 	void testStatusUpdateWhenInvalid() {
-		fail("Not yet implemented");
+		
+		// Create dummy values to pass through the test
+		int offerId = 1010;
+		String status = "deklined";
+		
+		// Used to test if an expected exception was thrown
+		Exception exception = Assertions.assertThrows(BusinessException.class, () -> {
+			offersService.statusUpdate(offerId, status);
+		});
+		
+		// Messages that will be checked 
+		String expectedMessage = "Invalid status input.";
+		String actualMessage = exception.getMessage();
+		
+		// Testing the message
+		Assertions.assertTrue(actualMessage.contains(expectedMessage));
+		
 	}
 
 }
