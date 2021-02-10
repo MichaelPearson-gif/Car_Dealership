@@ -126,7 +126,32 @@ class OffersServiceImplTest {
 
 	@Test
 	void testCarOffers() {
-		fail("Not yet implemented");
+		
+		// Create a dummy car id
+		int carId = 104;
+		
+		// Create a dummy list of pending offers
+		List<Offers> myOffers = new ArrayList<>(Arrays.asList(new Offers(1000, "Drakebell", 104, 10000.00, "Pending"),
+				new Offers(1001, "TDog", 104, 5000.00, "Pending"),
+				new Offers(1002, "starGuy", 104, 8000.00, "Pending")));
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(offersDAOImpl.allOffers()).thenReturn(myOffers);
+			
+			// Create a list object to make the call to the allOffers service method
+			List<Offers> returnedOffers = offersService.carOffers(carId);
+			
+			// Loop through the list to test that the status says Pending
+			for(Offers offer : returnedOffers) {
+				Assertions.assertEquals(104, offer.getCarId());
+			}
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
