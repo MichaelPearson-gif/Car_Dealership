@@ -1,7 +1,5 @@
 package com.dealership.test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -101,9 +99,33 @@ class PaymentServiceImplTest {
 		
 	}
 
+	// Testing the makePaymentByOffer method
 	@Test
-	void testMakePayment() {
-		fail("Not yet implemented");
+	void testMakePaymentByOffer() {
+		
+		// Make a dummy payment object to pass through the test
+		Payment payment = new Payment();
+		// Set some initial values that they system will automatically set
+		payment.setPaymentId(10000);
+		payment.setCarId(100);
+		payment.setTotalPayment(5000.00);
+		
+		try {
+			
+			// Tell Mockito what to mock for this test
+			Mockito.when(paymentDAOImpl.makePayment(payment)).thenReturn(1);
+			
+			// Create an int variable to store the result of the makePaymentByOffer method
+			int c = paymentService.makePaymentByOffer(payment);
+			
+			// Use assertEquals to test if the payment record was created
+			Assertions.assertEquals(1, c);
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }
