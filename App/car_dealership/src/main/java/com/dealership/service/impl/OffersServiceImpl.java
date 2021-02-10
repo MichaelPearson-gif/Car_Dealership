@@ -67,7 +67,9 @@ public class OffersServiceImpl implements OffersService {
 
 	// Employee updates status of an offer
 	@Override
-	public void statusUpdate(int offerId, String status) throws BusinessException {
+	public int statusUpdate(int offerId, String status) throws BusinessException {
+		
+		int c = 0;
 		
 		// If employee approves the offer, make the following updates
 		if(status.equals("Approved")) {
@@ -87,9 +89,6 @@ public class OffersServiceImpl implements OffersService {
 			
 			//-----------------------------------------------------------------
 			
-			// Employee making updates
-			offersDAO.statusUpdate(offerId, status);
-			
 			// Get the car id and username
 			carId = approvedOffer.getCarId();
 			username = approvedOffer.getUsername();
@@ -102,7 +101,7 @@ public class OffersServiceImpl implements OffersService {
 			
 			initPayment.setCarId(carId);
 			initPayment.setTotalPayment(approvedOffer.getOffer());
-			paymentService.makePayment(initPayment);
+			paymentService.makePaymentByOffer(initPayment);
 			
 			
 			//-----------------------------------------------------------------
@@ -121,25 +120,31 @@ public class OffersServiceImpl implements OffersService {
 					offersDAO.statusUpdate(offer);
 				}
 				
-				// Print out a message saying that the updates was successful
-				System.out.println("All other offers have been updated");
 				
-			}else {
-				// Print out a message saying that the updates was successful
-				System.out.println("All updates were successful");
 			}
+			
+			// Employee making updates
+			c = offersDAO.statusUpdate(offerId, status);
 			
 		}else if(status.equals("Declined")) {
 			// Update the status
-			offersDAO.statusUpdate(offerId, status);
-			
-			// Print out a message saying that the updates was successful
-			System.out.println("All updates were successful");
+			c = offersDAO.statusUpdate(offerId, status);
 		}else {
 			// Print a message to the employee about an invalid option
 			System.out.println("Invalid status! Please try again.");
 		}
+		return c;
 		
 	}
+
+//	@Override
+//	public Offers getOffer(int offerId) throws BusinessException {
+//		
+//		Offers offer = null;
+//		
+//		offer = offersDAO.getOffer(offerId);
+//		
+//		return offer;
+//	}
 
 }

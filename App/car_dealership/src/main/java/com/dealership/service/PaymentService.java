@@ -13,7 +13,10 @@ public interface PaymentService {
 	// Employee can view all payments on a car
 	public List<Payment> allPayments(int carId) throws BusinessException;
 	
-	// Make a payment
-	public int makePayment(Payment payment) throws BusinessException;
+	// Make a payment when an offer is approved
+	public int makePaymentByOffer(Payment payment) throws BusinessException;
+	
+	// Customer makes a payment
+	public int customerPayment(Payment payment) throws BusinessException;
 	
 }

@@ -7,7 +7,7 @@ import com.dealership.model.Payment;
 
 public interface PaymentDAO {
 
-	// Make a payment
+	// Make Payment
 	public int makePayment(Payment payment) throws BusinessException;
 	
 	// Get the latest payment info

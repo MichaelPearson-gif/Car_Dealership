@@ -118,7 +118,7 @@ public class CustomerMenu {
 				payment.setAmount(Double.parseDouble(sc.nextLine()));
 				
 				// Send info to the payment Service layer
-				paymentService.makePayment(payment);
+				paymentService.customerPayment(payment);
 				
 				break;
 				

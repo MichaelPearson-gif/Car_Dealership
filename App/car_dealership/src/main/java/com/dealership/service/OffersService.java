@@ -17,5 +17,8 @@ public interface OffersService {
 	public List<Offers> carOffers(int carId) throws BusinessException;
 	
 	// Employee updates status of an offer
-	public void statusUpdate(int offerId, String status) throws BusinessException;
+	public int statusUpdate(int offerId, String status) throws BusinessException;
+	
+	// Get an offer by its id
+//	public Offers getOffer(int offerId) throws BusinessException;
 }
