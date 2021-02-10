@@ -28,11 +28,6 @@ public class PaymentDAOImpl implements PaymentDAO {
 		LocalDate ld = LocalDate.now();
 		Date sqlDate = Date.valueOf(ld);
 
-		// Calculate the remaining payments
-		// Assume that each payment is the same as the calculated monthly amount
-		// Thus the remaining payments is just 1 less than the previous remaining amount
-		int newRemainingAmount = payment.getRemainingPayments() - 1;
-
 		// Connect and update the DB
 		try (Connection connection = PostgresqlConnection.getConnection()) {
 
@@ -45,7 +40,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 			preparedStatement.setDouble(2, payment.getAmount());
 			preparedStatement.setDouble(3, payment.getTotalPayment());
 			preparedStatement.setDouble(4, payment.getMonthlyPayment());
-			preparedStatement.setInt(5, newRemainingAmount);
+			preparedStatement.setInt(5, payment.getRemainingPayments());
 			preparedStatement.setDate(6, sqlDate);
 
 			// Override c with the query execution

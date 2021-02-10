@@ -1,5 +1,7 @@
 package com.dealership.service.impl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import org.apache.log4j.Logger;
 import com.dealership.dao.PaymentDAO;
@@ -30,9 +32,6 @@ public class PaymentServiceImpl implements PaymentService {
 
 			// Retrieve the number of payments remaining for the car
 			numPayments = payment.getRemainingPayments();
-
-			// Print out to the customer their remaining payments
-			System.out.println("You have " + numPayments + " left of $" + payment.getMonthlyPayment());
 
 		} catch (NullPointerException e) {
 			log.error(e.getMessage());
@@ -70,7 +69,10 @@ public class PaymentServiceImpl implements PaymentService {
 
 		// Each customer will be making payments over the course of 5 years = 60 months
 		double monthlyPayment = payment.getTotalPayment() / 60;
-		payment.setMonthlyPayment(monthlyPayment);
+		
+		// BigDecimal will scale the monthlyPayment to 2 digits and apply RoundingMode.HALF_UP
+		BigDecimal bd = new BigDecimal(monthlyPayment).setScale(2, RoundingMode.HALF_UP);
+		payment.setMonthlyPayment(bd.doubleValue());
 		payment.setRemainingPayments(60);
 
 		c = paymentDAO.makePayment(payment);
@@ -89,7 +91,12 @@ public class PaymentServiceImpl implements PaymentService {
 		// Now grab the total payment, monthly payment, and remaining payments info
 		payment.setTotalPayment(recentPayment.getTotalPayment());
 		payment.setMonthlyPayment(recentPayment.getMonthlyPayment());
-		payment.setRemainingPayments(recentPayment.getRemainingPayments());
+		
+		// Calculate the remaining payments
+		// Assume that each payment is the same as the calculated monthly amount
+		// Thus the remaining payments is just 1 less than the previous remaining amount
+		int newRemainingPayment = recentPayment.getRemainingPayments() - 1;
+		payment.setRemainingPayments(newRemainingPayment);
 
 		// Now send the info to the DAO layer
 		c = paymentDAO.makePayment(payment);
