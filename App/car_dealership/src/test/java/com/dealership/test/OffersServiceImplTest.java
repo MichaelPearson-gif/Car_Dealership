@@ -96,6 +96,33 @@ class OffersServiceImplTest {
 		}
 		
 	}
+	
+	// Test to make sure the size of the list is correct
+	@Test
+	void testAllOffersSize() {
+		
+		// Create a dummy list of pending offers
+		List<Offers> myOffers = new ArrayList<>(Arrays.asList(new Offers(1000, "Drakebell", 104, 10000.00, "Pending"),
+				new Offers(1001, "TDog", 106, 5000.00, "Pending"),
+				new Offers(1002, "starGuy", 103, 20000.00, "Pending")));
+		
+		try {
+			
+			// Tell Mockito what to Mock
+			Mockito.when(offersDAOImpl.allOffers()).thenReturn(myOffers);
+			
+			// Create a list object to make the call to the allOffers service method
+			List<Offers> returnedOffers = offersService.allOffers();
+			
+			// Test the size of the list
+			Assertions.assertEquals(myOffers.size(), returnedOffers.size());
+			
+			
+		}catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	@Test
 	void testCarOffers() {
